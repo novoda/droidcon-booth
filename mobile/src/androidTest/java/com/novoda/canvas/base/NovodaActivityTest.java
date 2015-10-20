@@ -1,10 +1,13 @@
 package com.novoda.canvas.base;
 
 import android.app.Activity;
+import android.os.SystemClock;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.novoda.canvas.NovodaActivity;
+
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -27,6 +30,7 @@ public abstract class NovodaActivityTest {
     @Test
     public void foo() {
         doTest(activity);
+        SystemClock.sleep(TimeUnit.SECONDS.toMillis(10));
     }
 
     public abstract void doTest(Activity activity);
