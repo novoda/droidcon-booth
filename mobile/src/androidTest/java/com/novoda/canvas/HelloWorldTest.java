@@ -19,7 +19,7 @@ public class HelloWorldTest extends NovodaActivityTest {
         final ViewGroup root = (ViewGroup) activity.findViewById(android.R.id.content);
         final TextView text = new TextView(activity);
         text.setText("HELLO WORLD");
-        text.setTextSize(250);
+        text.setTextSize(150);
         root.addView(text);
 
         for (int i = 0; i < 200; i++) {
