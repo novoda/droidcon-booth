@@ -6,10 +6,10 @@ import com.novoda.canvas.base.NovodaActivityTest;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-public class NullActivityCheckTest extends NovodaActivityTest {
+public class NullActivityTest extends NovodaActivityTest {
 
     @Override
-    public void doTest(Activity activity) {
+    public void startTestFor(Activity activity) {
         assertThat(activity).isNotNull();
     }
 

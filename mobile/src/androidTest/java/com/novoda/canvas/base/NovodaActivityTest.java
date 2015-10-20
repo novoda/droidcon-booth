@@ -1,12 +1,12 @@
 package com.novoda.canvas.base;
 
 import android.app.Activity;
-import android.os.SystemClock;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.novoda.canvas.NovodaActivity;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
@@ -28,11 +28,18 @@ public abstract class NovodaActivityTest {
     }
 
     @Test
-    public void foo() {
-        doTest(activity);
-        SystemClock.sleep(TimeUnit.SECONDS.toMillis(10));
+    public void theTest() throws InterruptedException {
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                startTestFor(activity);
+                countDownLatch.countDown();
+            }
+        });
+        countDownLatch.await(10, TimeUnit.SECONDS);
     }
 
-    public abstract void doTest(Activity activity);
+    public abstract void startTestFor(Activity activity);
 
 }
