@@ -1,17 +1,18 @@
-package com.ataulm.basic;
+package com.ataulm.basic.base;
 
+import android.app.Activity;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+
+import com.ataulm.basic.NovodaActivity;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.fest.assertions.api.Assertions.assertThat;
-
 @RunWith(AndroidJUnit4.class)
-public class NovodaActivityTest {
+public abstract class NovodaActivityTest {
 
     @Rule
     public ActivityTestRule<NovodaActivity> activityRule = new ActivityTestRule<>(NovodaActivity.class);
@@ -24,8 +25,11 @@ public class NovodaActivityTest {
     }
 
     @Test
-    public void isNotNull() {
-        assertThat(activity).isNotNull();
+    public void foo() {
+        doTest(activity);
     }
+
+
+    public abstract void doTest(Activity activity);
 
 }
