@@ -1,4 +1,4 @@
-package com.ataulm.basic;
+package com.novoda.canvas;
 
 import android.app.Activity;
 import android.os.Bundle;

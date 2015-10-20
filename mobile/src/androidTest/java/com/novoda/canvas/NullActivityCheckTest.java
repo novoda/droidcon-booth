@@ -1,8 +1,8 @@
-package com.ataulm.basic;
+package com.novoda.canvas;
 
 import android.app.Activity;
 
-import com.ataulm.basic.base.NovodaActivityTest;
+import com.novoda.canvas.base.NovodaActivityTest;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 

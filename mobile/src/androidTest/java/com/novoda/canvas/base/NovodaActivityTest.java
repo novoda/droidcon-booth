@@ -1,10 +1,10 @@
-package com.ataulm.basic.base;
+package com.novoda.canvas.base;
 
 import android.app.Activity;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.ataulm.basic.NovodaActivity;
+import com.novoda.canvas.NovodaActivity;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -28,7 +28,6 @@ public abstract class NovodaActivityTest {
     public void foo() {
         doTest(activity);
     }
-
 
     public abstract void doTest(Activity activity);
 
