@@ -42,6 +42,8 @@ public class FaceOffActivityTest extends NovodaActivityTest {
 
         colt = makeFace(parent, Player.COLT);
         jake = makeFace(parent, Player.JAKE);
+        startAnimations(colt, Player.COLT);
+        startAnimations(jake, Player.JAKE);
 
         scheduleVictoryToast(parent);
     }
@@ -73,10 +75,13 @@ public class FaceOffActivityTest extends NovodaActivityTest {
         int xPosition = player.getXSide().getCentreOfSide(parent.getWidth());
         view.setX(xPosition);
         parent.addView(view);
+        return view;
+    }
+
+    private void startAnimations(View view, Player player) {
         rotate(view, player);
         moveX(view);
         moveY(view, player.getYSide());
-        return view;
     }
 
     private void rotate(View view, Player player) {
