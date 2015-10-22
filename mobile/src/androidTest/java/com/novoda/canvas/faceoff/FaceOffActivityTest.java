@@ -56,22 +56,27 @@ public class FaceOffActivityTest extends NovodaActivityTest {
         moveX(jake);
         moveY(jake, YSide.BOTTOM);
 
+        scheduleVictoryToast(activity);
+    }
+
+    private void scheduleVictoryToast(final Activity activity) {
         parent.postDelayed(
                 new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(activity, getVictoryText(activity), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, getVictoryText(), Toast.LENGTH_SHORT).show();
                     }
                 }, 8000
         );
     }
 
     @StringRes
-    private int getVictoryText(Activity activity) {
+    private int getVictoryText() {
         int enumCount = 0;
         int intDefCount = 0;
         for (TextView word : words) {
-            if (word.getText().toString().equals(activity.getString(R.string.face_off_enum))) {
+            ImplType tag = (ImplType) word.getTag();
+            if (tag == ImplType.ENUM) {
                 enumCount++;
             } else {
                 intDefCount++;
@@ -90,7 +95,13 @@ public class FaceOffActivityTest extends NovodaActivityTest {
         for (int i = 0; i < WORD_COUNT; i++) {
             TextView word = new TextView(activity);
             word.setLayoutParams(new ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
-            word.setText(RANDOM.nextBoolean() ? R.string.face_off_enum : R.string.face_off_int);
+            if (RANDOM.nextBoolean()) {
+                word.setTag(ImplType.ENUM);
+                word.setText(R.string.face_off_enum);
+            } else {
+                word.setTag(ImplType.INT);
+                word.setText(R.string.face_off_int);
+            }
             word.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
             word.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
             word.setX(RANDOM.nextInt(parent.getWidth()));
@@ -121,8 +132,10 @@ public class FaceOffActivityTest extends NovodaActivityTest {
                         public void onAnimationUpdate(ValueAnimator animation) {
                             for (TextView word : words) {
                                 if (checkCollision(colt, word)) {
+                                    word.setTag(ImplType.INT);
                                     word.setText(R.string.face_off_int);
                                 } else if (checkCollision(jake, word)) {
+                                    word.setTag(ImplType.ENUM);
                                     word.setText(R.string.face_off_enum);
                                 }
                             }
@@ -169,10 +182,10 @@ public class FaceOffActivityTest extends NovodaActivityTest {
     private static boolean checkCollision(View a, View b) {
         Rect aBounds = getBounds(a);
         Rect bBounds = getBounds(b);
-        boolean intersect = aBounds.intersect(bBounds);
+        boolean viewsDoCollide = aBounds.intersect(bBounds);
         RECT_POOL.release(aBounds);
         RECT_POOL.release(bBounds);
-        return intersect;
+        return viewsDoCollide;
     }
 
     private static Rect getBounds(View v) {
