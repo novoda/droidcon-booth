@@ -3,13 +3,11 @@ package com.novoda.canvas;
 import android.animation.ObjectAnimator;
 import android.app.ActionBar;
 import android.app.Activity;
-import android.graphics.Color;
+import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
-import android.widget.ImageView;
 
 import com.novoda.canvas.base.NovodaActivityTest;
 
@@ -25,8 +23,8 @@ public class ParallaxActivityTest extends NovodaActivityTest {
     public void startTestFor(Activity activity) {
         View parent = activity.findViewById(android.R.id.content);
 
-        List<ImageView> smallSquares = createSquares(activity, true, parent);
-        List<ImageView> bigSquares = createSquares(activity, false, parent);
+        List<View> smallSquares = createSquares(activity, true, parent);
+        List<View> bigSquares = createSquares(activity, false, parent);
 
         addSquares((ViewGroup) parent, smallSquares);
         addSquares((ViewGroup) parent, bigSquares);
@@ -36,20 +34,20 @@ public class ParallaxActivityTest extends NovodaActivityTest {
 
     }
 
-    private List<ImageView> createSquares(Activity activity, boolean small, View parent) {
-        List<ImageView> squares = new ArrayList<>(SQUARES_COUNT);
+    private List<View> createSquares(Context context, boolean small, View parent) {
+        List<View> squares = new ArrayList<>(SQUARES_COUNT);
 
-        int color = getColorFor(small);
-        final int size = getSizeFor(activity, small);
+        int color = getColorFor(context, small);
+        final int size = getSizeFor(context, small);
 
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.RECTANGLE);
         drawable.setColor(color);
 
         for (int i = 0; i < SQUARES_COUNT; i++) {
-            ImageView square = new ImageView(activity);
+            View square = new View(context);
 
-            square.setImageDrawable(drawable);
+            square.setBackground(drawable);
             square.setLayoutParams(new ActionBar.LayoutParams(size, size));
 
             square.setY(parent.getHeight() / 5 + size);
@@ -60,34 +58,31 @@ public class ParallaxActivityTest extends NovodaActivityTest {
         return squares;
     }
 
-    private int getSizeFor(Activity activity, boolean small) {
-        final int base = small ? 100 : 150;
-        return (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                base,
-                activity.getResources().getDisplayMetrics()
-        );
+    private int getSizeFor(Context context, boolean small) {
+        int dimenId = small ? R.dimen.small_square_size : R.dimen.big_square_size;
+        return context.getResources().getDimensionPixelSize(dimenId);
     }
 
-    private int getColorFor(boolean small) {
-        return small ? Color.parseColor("#6633aa") : Color.parseColor("#550099");
+    private int getColorFor(Context context, boolean small) {
+        int colorId = small ? R.color.small_square_bg : R.color.big_square_bg;
+        return context.getResources().getColor(colorId);
     }
 
-    private void addSquares(ViewGroup parent, List<ImageView> smallSquares) {
-        for (ImageView smallSquare : smallSquares) {
+    private void addSquares(ViewGroup parent, List<View> smallSquares) {
+        for (View smallSquare : smallSquares) {
             parent.addView(smallSquare);
         }
     }
 
-    private void animateSquares(List<ImageView> squares, boolean small, View parent) {
-        for (ImageView square : squares) {
+    private void animateSquares(List<View> squares, boolean small, View parent) {
+        for (View square : squares) {
             moveSquare(square, small, parent);
         }
     }
 
-    private void moveSquare(ImageView square, boolean small, View parent) {
+    private void moveSquare(View square, boolean small, View parent) {
         ObjectAnimator movement = ObjectAnimator
-                .ofFloat(square, "x", square.getX() - parent.getWidth() * getMultiplierFor(small));
+                .ofFloat(square, "translationX", square.getX() - parent.getWidth() * getMultiplierFor(small));
         movement.setDuration(DURATION_MS);
         movement.setRepeatCount(ObjectAnimator.INFINITE);
         movement.setRepeatMode(ObjectAnimator.RESTART);
