@@ -2,7 +2,6 @@ package com.novoda.canvas;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Path;
 import android.graphics.Rect;
@@ -19,14 +18,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
 public class FaceOffActivityTest extends NovodaActivityTest {
 
     private static final Random RANDOM = new Random();
-    private static final int WORD_COUNT = 5;
+    private static final int WORD_COUNT = 12;
     @DrawableRes
-    public static final int DRAWABLE_ID_COLT = android.R.drawable.ic_menu_compass;
+    public static final int DRAWABLE_ID_COLT = R.drawable.colt;
     @DrawableRes
-    public static final int DRAWABLE_ID_JAKE = android.R.drawable.ic_menu_camera;
+    public static final int DRAWABLE_ID_JAKE = R.drawable.jake;
     private ImageView colt;
     private ImageView jake;
     private List<TextView> words;
@@ -54,8 +55,8 @@ public class FaceOffActivityTest extends NovodaActivityTest {
             final TextView word = new TextView(activity);
             word.setText("ENUM");
             word.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
-            int size = (int) (activity.getResources().getDisplayMetrics().density * 50);
-            word.setLayoutParams(new ActionBar.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, size));
+            int height = (int) (activity.getResources().getDisplayMetrics().density * 50);
+            word.setLayoutParams(new ViewGroup.LayoutParams(WRAP_CONTENT, height));
             word.setX(i * (parent.getWidth() / WORD_COUNT));
             word.setY(RANDOM.nextInt(parent.getHeight()));
             words.add(word);
@@ -65,8 +66,7 @@ public class FaceOffActivityTest extends NovodaActivityTest {
 
     private void createTheColt(Activity activity, ViewGroup parent) {
         colt = new ImageView(activity);
-        int size = (int) (activity.getResources().getDisplayMetrics().density * 200);
-        colt.setLayoutParams(new ActionBar.LayoutParams(size, size));
+        colt.setLayoutParams(new ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
         colt.setBackgroundResource(DRAWABLE_ID_COLT);
         colt.setX(RANDOM.nextInt(parent.getWidth() / 2));
         colt.setY(parent.getHeight() / 2);
@@ -75,8 +75,7 @@ public class FaceOffActivityTest extends NovodaActivityTest {
 
     private void makeTheJake(Activity activity, ViewGroup parent) {
         jake = new ImageView(activity);
-        int size = (int) (activity.getResources().getDisplayMetrics().density * 200);
-        jake.setLayoutParams(new ActionBar.LayoutParams(size, size));
+        jake.setLayoutParams(new ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
         jake.setBackgroundResource(DRAWABLE_ID_JAKE);
         jake.setX(RANDOM.nextInt(parent.getWidth() / 2));
         jake.setY(parent.getHeight() / 2);
@@ -117,7 +116,7 @@ public class FaceOffActivityTest extends NovodaActivityTest {
                     }
                 }
         );
-        animator.setDuration(1000 + RANDOM.nextInt(1000));
+        animator.setDuration(2000 + RANDOM.nextInt(1000));
         animator.setRepeatCount(ObjectAnimator.INFINITE);
         animator.setRepeatMode(ObjectAnimator.REVERSE);
         animator.start();
