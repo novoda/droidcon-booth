@@ -104,12 +104,8 @@ public class FaceOffActivityTest extends NovodaActivityTest {
         ImageView view = new ImageView(activity);
         view.setLayoutParams(new ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
         view.setBackgroundResource(drawable);
-        int quarterWidth = parent.getWidth() / 4;
-        if (xSide == XSide.LEFT) {
-            view.setX(quarterWidth);
-        } else {
-            view.setX(3 * quarterWidth);
-        }
+        int xPosition = xSide.getCentreOfSide(parent.getWidth());
+        view.setX(xPosition);
         parent.addView(view);
         return view;
     }
