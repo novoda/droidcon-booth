@@ -47,8 +47,8 @@ public class FaceOffActivityTest extends NovodaActivityTest {
         parent = (ViewGroup) activity.findViewById(android.R.id.content);
         addWords(activity);
 
-        colt = makeFace(activity, parent, DRAWABLE_ID_COLT, XSide.LEFT);
-        jake = makeFace(activity, parent, DRAWABLE_ID_JAKE, XSide.RIGHT);
+        colt = makeFace(activity, DRAWABLE_ID_COLT, XSide.LEFT);
+        jake = makeFace(activity, DRAWABLE_ID_JAKE, XSide.RIGHT);
         rotate(colt);
         moveX(colt);
         moveY(colt, YSide.TOP);
@@ -100,7 +100,7 @@ public class FaceOffActivityTest extends NovodaActivityTest {
         }
     }
 
-    private ImageView makeFace(Activity activity, ViewGroup parent, int drawable, XSide xSide) {
+    private ImageView makeFace(Activity activity, int drawable, XSide xSide) {
         ImageView view = new ImageView(activity);
         view.setLayoutParams(new ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
         view.setBackgroundResource(drawable);
