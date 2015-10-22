@@ -40,12 +40,11 @@ public class ParallaxActivityTest extends NovodaActivityTest {
         List<ImageView> squares = new ArrayList<>(SQUARES_COUNT);
 
         int color = getColorFor(small);
-
-        GradientDrawable drawable = (GradientDrawable) activity.getResources().getDrawable(R.drawable.square);
-        //noinspection ConstantConditions
-        drawable.setColor(color);
-
         final int size = getSizeFor(activity, small);
+
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setShape(GradientDrawable.RECTANGLE);
+        drawable.setColor(color);
 
         for (int i = 0; i < SQUARES_COUNT; i++) {
             ImageView square = new ImageView(activity);
