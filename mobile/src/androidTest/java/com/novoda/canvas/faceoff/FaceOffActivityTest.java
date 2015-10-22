@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
+import android.support.v4.util.Pools;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +20,6 @@ import android.widget.Toast;
 import com.novoda.canvas.R;
 import com.novoda.canvas.base.NovodaActivityTest;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -35,7 +34,9 @@ public class FaceOffActivityTest extends NovodaActivityTest {
     private static final int WORD_COUNT = 12;
     private static final Random RANDOM = new Random();
 
-    private final List<TextView> words = new ArrayList<>(WORD_COUNT);
+    private static final Pools.Pool<Rect> RECT_POOL = new Pools.SimplePool<>(WORD_COUNT + 2);
+
+    private final TextView[] words = new TextView[WORD_COUNT];
 
     private ImageView colt;
     private ImageView jake;
@@ -49,9 +50,11 @@ public class FaceOffActivityTest extends NovodaActivityTest {
         colt = makeFace(activity, parent, DRAWABLE_ID_COLT, XSide.LEFT);
         jake = makeFace(activity, parent, DRAWABLE_ID_JAKE, XSide.RIGHT);
         rotate(colt);
+        moveX(colt);
+        moveY(colt, YSide.TOP);
         rotate(jake);
-        move(colt, YSide.TOP);
-        move(jake, YSide.BOTTOM);
+        moveX(jake);
+        moveY(jake, YSide.BOTTOM);
 
         parent.postDelayed(
                 new Runnable() {
@@ -92,7 +95,7 @@ public class FaceOffActivityTest extends NovodaActivityTest {
             word.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
             word.setX(RANDOM.nextInt(parent.getWidth()));
             word.setY(i * parent.getHeight() / WORD_COUNT);
-            words.add(word);
+            words[i] = word;
             parent.addView(word);
         }
     }
@@ -136,11 +139,6 @@ public class FaceOffActivityTest extends NovodaActivityTest {
         rotation.start();
     }
 
-    private void move(View view, @YSide int ySide) {
-        moveX(view);
-        moveY(view, ySide);
-    }
-
     private void moveX(final View view) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(view, "x", view.getX(), RANDOM.nextInt(parent.getWidth()));
         animator.setDuration(MOVEMENT_DURATION_MS);
@@ -172,14 +170,27 @@ public class FaceOffActivityTest extends NovodaActivityTest {
         animator.start();
     }
 
-    private static boolean checkCollision(View v1, View v2) {
-        return getBounds(v1).intersect(getBounds(v2));
+    private static boolean checkCollision(View a, View b) {
+        Rect aBounds = getBounds(a);
+        Rect bBounds = getBounds(b);
+        boolean intersect = aBounds.intersect(bBounds);
+        RECT_POOL.release(aBounds);
+        RECT_POOL.release(bBounds);
+        return intersect;
     }
 
     private static Rect getBounds(View v) {
+        Rect rect = RECT_POOL.acquire();
+        if (rect == null) {
+            rect = new Rect();
+        }
         int x = (int) v.getTranslationX();
         int y = (int) v.getTranslationY();
-        return new Rect(x, y, x + v.getWidth(), y + v.getHeight());
+        rect.left = x;
+        rect.top = y;
+        rect.right = x + v.getWidth();
+        rect.bottom = y + v.getHeight();
+        return rect;
     }
 
 }
