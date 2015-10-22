@@ -28,7 +28,6 @@ public class FaceOffActivityTest extends NovodaActivityTest {
     private static final int MOVEMENT_DURATION_MS = 800;
     private static final int WORD_COUNT = 12;
     private static final Random RANDOM = new Random();
-
     private static final Pools.Pool<Rect> RECT_POOL = new Pools.SimplePool<>(WORD_COUNT + 2);
 
     private final TextView[] words = new TextView[WORD_COUNT];
@@ -37,7 +36,7 @@ public class FaceOffActivityTest extends NovodaActivityTest {
     private View jake;
 
     @Override
-    public void startTestFor(final Activity activity) {
+    public void startTestFor(Activity activity) {
         ViewGroup parent = (ViewGroup) activity.findViewById(android.R.id.content);
         addWords(parent);
 
@@ -89,15 +88,7 @@ public class FaceOffActivityTest extends NovodaActivityTest {
                     new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public void onAnimationUpdate(ValueAnimator animation) {
-                            for (TextView word : words) {
-                                if (checkCollision(colt, word)) {
-                                    word.setTag(ImplType.INT);
-                                    word.setText(R.string.face_off_int);
-                                } else if (checkCollision(jake, word)) {
-                                    word.setTag(ImplType.ENUM);
-                                    word.setText(R.string.face_off_enum);
-                                }
-                            }
+                            onEachFrame();
                         }
                     }
             );
@@ -105,6 +96,18 @@ public class FaceOffActivityTest extends NovodaActivityTest {
         rotation.setRepeatCount(ObjectAnimator.INFINITE);
         rotation.setRepeatMode(ObjectAnimator.REVERSE);
         rotation.start();
+    }
+
+    private void onEachFrame() {
+        for (TextView word : words) {
+            if (checkCollision(colt, word)) {
+                word.setTag(ImplType.INT);
+                word.setText(R.string.face_off_int);
+            } else if (checkCollision(jake, word)) {
+                word.setTag(ImplType.ENUM);
+                word.setText(R.string.face_off_enum);
+            }
+        }
     }
 
     private static boolean checkCollision(View a, View b) {
