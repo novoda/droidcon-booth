@@ -19,7 +19,7 @@ import java.util.List;
 public class ParallaxActivityTest extends NovodaActivityTest {
 
     private static final int SQUARES_COUNT = 10;
-    public static final int DURATION = 20000;
+    private static final int DURATION_MS = 20000;
 
     @Override
     public void startTestFor(Activity activity) {
@@ -88,7 +88,7 @@ public class ParallaxActivityTest extends NovodaActivityTest {
     private void moveSquare(ImageView square, boolean small, View parent) {
         ObjectAnimator movement = ObjectAnimator
                 .ofFloat(square, "x", square.getX() - parent.getWidth() * getMultiplierFor(small));
-        movement.setDuration(DURATION);
+        movement.setDuration(DURATION_MS);
         movement.setRepeatCount(ObjectAnimator.INFINITE);
         movement.setRepeatMode(ObjectAnimator.RESTART);
         movement.setInterpolator(new LinearInterpolator());
