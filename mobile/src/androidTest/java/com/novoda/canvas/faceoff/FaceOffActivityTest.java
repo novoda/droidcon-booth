@@ -7,12 +7,14 @@ import android.app.Activity;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.novoda.canvas.R;
 import com.novoda.canvas.base.NovodaActivityTest;
@@ -40,7 +42,7 @@ public class FaceOffActivityTest extends NovodaActivityTest {
     private ViewGroup parent;
 
     @Override
-    public void startTestFor(Activity activity) {
+    public void startTestFor(final Activity activity) {
         parent = (ViewGroup) activity.findViewById(android.R.id.content);
         addWords(activity);
 
@@ -50,6 +52,35 @@ public class FaceOffActivityTest extends NovodaActivityTest {
         rotate(jake);
         move(colt, YSide.TOP);
         move(jake, YSide.BOTTOM);
+
+        parent.postDelayed(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(activity, getVictoryText(activity), Toast.LENGTH_SHORT).show();
+                    }
+                }, 8000
+        );
+    }
+
+    @StringRes
+    private int getVictoryText(Activity activity) {
+        int enumCount = 0;
+        int intDefCount = 0;
+        for (TextView word : words) {
+            if (word.getText().toString().equals(activity.getString(R.string.face_off_enum))) {
+                enumCount++;
+            } else {
+                intDefCount++;
+            }
+        }
+        if (enumCount > intDefCount) {
+            return R.string.face_off_enum_win;
+        } else if (enumCount < intDefCount) {
+            return R.string.face_off_int_win;
+        } else {
+            return R.string.face_off_draw;
+        }
     }
 
     private void addWords(Activity activity) {
