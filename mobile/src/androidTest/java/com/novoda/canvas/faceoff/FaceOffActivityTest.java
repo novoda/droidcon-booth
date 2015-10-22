@@ -25,13 +25,13 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 public class FaceOffActivityTest extends NovodaActivityTest {
 
-    private static final Random RANDOM = new Random();
-    private static final int WORD_COUNT = 12;
     @DrawableRes
     private static final int DRAWABLE_ID_COLT = R.drawable.colt;
     @DrawableRes
     private static final int DRAWABLE_ID_JAKE = R.drawable.jake;
     private static final int MOVEMENT_DURATION_MS = 800;
+    private static final int WORD_COUNT = 12;
+    private static final Random RANDOM = new Random();
 
     private final List<TextView> words = new ArrayList<>(WORD_COUNT);
 
@@ -42,7 +42,6 @@ public class FaceOffActivityTest extends NovodaActivityTest {
     @Override
     public void startTestFor(Activity activity) {
         parent = (ViewGroup) activity.findViewById(android.R.id.content);
-        parent.setBackgroundResource(android.R.color.holo_red_dark);
         addWords(activity);
 
         colt = makeFace(activity, parent, DRAWABLE_ID_COLT, XSide.LEFT);
@@ -56,12 +55,12 @@ public class FaceOffActivityTest extends NovodaActivityTest {
     private void addWords(Activity activity) {
         for (int i = 0; i < WORD_COUNT; i++) {
             TextView word = new TextView(activity);
+            word.setLayoutParams(new ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
             word.setText(RANDOM.nextBoolean() ? R.string.face_off_enum : R.string.face_off_int);
             word.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
             word.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
-            word.setLayoutParams(new ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
-            word.setX(i * parent.getWidth() / WORD_COUNT);
-            word.setY(RANDOM.nextInt(parent.getHeight()));
+            word.setX(RANDOM.nextInt(parent.getWidth()));
+            word.setY(i * parent.getHeight() / WORD_COUNT);
             words.add(word);
             parent.addView(word);
         }
