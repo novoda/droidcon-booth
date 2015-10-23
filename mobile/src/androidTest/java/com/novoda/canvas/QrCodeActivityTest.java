@@ -19,7 +19,7 @@ public class QrCodeActivityTest extends NovodaActivityTest {
     private static final Random RANDOM = new Random();
     private static final String[] listOfUrls = {
             "https://novoda.com",
-            "https://droidcon.co.uk",
+            "http://droidcon.co.uk",
             "http://sd.keepcalm-o-matic.co.uk/i/keep-calm-and-submit-a-pr-7.png",
             "https://github.com/novoda/droidcon-booth/pulls"
     };
