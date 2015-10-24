@@ -46,14 +46,11 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
     }
 
     private void draw(int[] randomPositionX) {
-        //array to hold x coordinates for the labels
-        //initialise all the labels to random characters
         selectRandomCharacters(randomPositionX);
-        // change the text of the labels and their position
+
         for (int j = 0; j < (parent.getHeight() / FONT_SIZE) * 2; j++) {
             char character = getRandomCharacter();
 
-            //move each character
             for (int i = 0; i < NUMBER_OF_REPEATS; i++) {
                 TextView charView = rain[i];
                 charView.setX(randomPositionX[i] * FONT_SIZE);
