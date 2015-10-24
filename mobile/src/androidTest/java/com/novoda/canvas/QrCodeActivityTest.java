@@ -21,7 +21,7 @@ public class QrCodeActivityTest extends NovodaActivityTest {
             "https://novoda.com",
             "http://droidcon.co.uk",
             "http://sd.keepcalm-o-matic.co.uk/i/keep-calm-and-submit-a-pr-7.png",
-            "https://github.com/novoda/droidcon-booth/pulls"
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     };
     private static final int[] listOfColors = {
         Color.BLACK, Color.GREEN, Color.argb(255,17,63,84), Color.DKGRAY
