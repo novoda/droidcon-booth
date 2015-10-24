@@ -36,9 +36,10 @@ public class QrCodeActivityTest extends NovodaActivityTest {
         int randomIndex = RANDOM.nextInt(listOfUrls.length);
         String url = listOfUrls[randomIndex];
         int color = listOfColors[randomIndex];
+        int qrCodeSizeInPixels = 1000;
 
         try {
-            BitMatrix qrCode = new QRCodeWriter().encode(url, BarcodeFormat.QR_CODE, 1000, 1000);
+            BitMatrix qrCode = new QRCodeWriter().encode(url, BarcodeFormat.QR_CODE, qrCodeSizeInPixels, qrCodeSizeInPixels);
             int width = qrCode.getWidth();
             int height = qrCode.getHeight();
             Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
