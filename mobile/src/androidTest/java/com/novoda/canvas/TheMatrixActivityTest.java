@@ -17,7 +17,6 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
     private static final Random random = new Random();
 
     private ViewGroup parent;
-    private int randomPositionX;
     private TextView view;
 
     @Override
@@ -47,7 +46,7 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
             char character = getRandomCharacter();
 
             TextView charView = view;
-            charView.setX(randomPositionX);
+            charView.setX((random.nextInt(parent.getWidth() / FONT_SIZE) - 1) * FONT_SIZE);
             charView.setY(y * (FONT_SIZE / 2));
             charView.setText(String.valueOf(character));
             charView.setTextColor(Color.rgb(0, 255 - y, 0));
@@ -61,7 +60,7 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
         view.setText(String.valueOf(character));
         parent.addView(view);
         this.view = view;
-        randomPositionX = (random.nextInt(parent.getWidth() / FONT_SIZE) - 1) * FONT_SIZE;
+
     }
 
     private char getRandomCharacter() {
