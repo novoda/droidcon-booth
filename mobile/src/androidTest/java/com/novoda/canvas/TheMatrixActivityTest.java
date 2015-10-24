@@ -14,7 +14,7 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
 
     private static final int FONT_SIZE = 20;
     private static final String CHARACTERS = "セ ソ キ ク ケ コ イ ウ エ オ ジャ な あ た ア カ サ ザ ジ  ズ ゼ ゾ シ ス";
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
 
     private ViewGroup parent;
     private TextView view;
@@ -44,7 +44,7 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
     }
 
     private char getRandomCharacter() {
-        int randomPosition = random.nextInt(CHARACTERS.length());
+        int randomPosition = RANDOM.nextInt(CHARACTERS.length());
         return CHARACTERS.charAt(randomPosition);
     }
 
@@ -65,7 +65,7 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
     private void draw() {
         for (int y = 0; y < (parent.getHeight() / FONT_SIZE) * 2; y++) {
             TextView charView = view;
-            charView.setX((random.nextInt(parent.getWidth() / FONT_SIZE) - 1) * FONT_SIZE);
+            charView.setX((RANDOM.nextInt(parent.getWidth() / FONT_SIZE) - 1) * FONT_SIZE);
             charView.setY(y * (FONT_SIZE / 2));
             charView.setTextColor(Color.rgb(0, 255 - (y * 2), 0));
             createNextRainDropView();
