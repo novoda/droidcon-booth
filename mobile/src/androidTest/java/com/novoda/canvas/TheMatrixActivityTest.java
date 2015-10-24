@@ -44,8 +44,8 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
     }
 
     private char getRandomCharacter() {
-        int randomCharPosition = random.nextInt(CHARACTERS.length());
-        return CHARACTERS.charAt(randomCharPosition);
+        int randomPosition = random.nextInt(CHARACTERS.length());
+        return CHARACTERS.charAt(randomPosition);
     }
 
     private void scroll() {
@@ -70,7 +70,7 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
             charView.setX((random.nextInt(parent.getWidth() / FONT_SIZE) - 1) * FONT_SIZE);
             charView.setY(y * (FONT_SIZE / 2));
             charView.setText(String.valueOf(character));
-            charView.setTextColor(Color.rgb(0, 255 - y, 0));
+            charView.setTextColor(Color.rgb(0, 255 - (y * 2), 0));
             createNextRainDropView();
         }
     }
