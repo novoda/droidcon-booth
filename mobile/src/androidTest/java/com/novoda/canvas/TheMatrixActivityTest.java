@@ -63,11 +63,6 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
         }
     }
 
-    private char getRandomCharacter() {
-        int randomCharPosition = random.nextInt(TEXT.length());
-        return TEXT.charAt(randomCharPosition);
-    }
-
     private void selectRandomCharacters(int[] randomPositionX) {
         for (int i = 0; i < NUMBER_OF_REPEATS; i++) {
             char character = getRandomCharacter();
@@ -84,6 +79,11 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
 //                i = (parent.getHeight() / FONT_SIZE) * 2;
             }
         }
+    }
+
+    private char getRandomCharacter() {
+        int randomCharPosition = random.nextInt(TEXT.length());
+        return TEXT.charAt(randomCharPosition);
     }
 
     private TextView createTextView() {
