@@ -27,6 +27,27 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
         scroll();
     }
 
+    private void createNextRainDropView() {
+        TextView view = createTextView();
+        char character = getRandomCharacter();
+        view.setText(String.valueOf(character));
+        parent.addView(view);
+        this.view = view;
+
+    }
+
+    private TextView createTextView() {
+        TextView label = new TextView(parent.getContext());
+        label.setTypeface(Typeface.MONOSPACE);
+        label.setTextSize(FONT_SIZE);
+        return label;
+    }
+
+    private char getRandomCharacter() {
+        int randomCharPosition = random.nextInt(CHARACTERS.length());
+        return CHARACTERS.charAt(randomCharPosition);
+    }
+
     private void scroll() {
         parent.postDelayed(scrollMatrix(), 200);
     }
@@ -52,27 +73,6 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
             charView.setTextColor(Color.rgb(0, 255 - y, 0));
             createNextRainDropView();
         }
-    }
-
-    private void createNextRainDropView() {
-        TextView view = createTextView();
-        char character = getRandomCharacter();
-        view.setText(String.valueOf(character));
-        parent.addView(view);
-        this.view = view;
-
-    }
-
-    private char getRandomCharacter() {
-        int randomCharPosition = random.nextInt(CHARACTERS.length());
-        return CHARACTERS.charAt(randomCharPosition);
-    }
-
-    private TextView createTextView() {
-        TextView label = new TextView(parent.getContext());
-        label.setTypeface(Typeface.MONOSPACE);
-        label.setTextSize(FONT_SIZE);
-        return label;
     }
 
 }
