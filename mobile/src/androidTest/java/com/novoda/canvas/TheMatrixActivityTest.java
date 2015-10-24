@@ -24,7 +24,7 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
     public void startTestFor(Activity activity) {
         parent = getParent(activity);
         parent.setBackgroundColor(getColor(R.color.matrix_background));
-        createRowOfRainDropViews();
+        createNextRainDropView();
         scroll();
     }
 
@@ -51,11 +51,11 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
             charView.setY(y * (FONT_SIZE / 2));
             charView.setText(String.valueOf(character));
             charView.setTextColor(Color.rgb(0, 255 - y, 0));
-            createRowOfRainDropViews();
+            createNextRainDropView();
         }
     }
 
-    private void createRowOfRainDropViews() {
+    private void createNextRainDropView() {
         TextView view = createTextView();
         char character = getRandomCharacter();
         view.setText(String.valueOf(character));
