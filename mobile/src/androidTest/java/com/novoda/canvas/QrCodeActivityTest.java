@@ -31,7 +31,7 @@ public class QrCodeActivityTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
-        ViewGroup view = (ViewGroup) activity.findViewById(android.R.id.content);
+        ViewGroup view = getParent(activity);
         ImageView qrCodeImageView = new ImageView(activity);
         view.addView(qrCodeImageView);
 
