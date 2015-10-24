@@ -22,7 +22,7 @@ public class SuperStarActivityTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
-        View parent = activity.findViewById(android.R.id.content);
+        View parent = getParent(activity);
         List<ImageView> stars = createStars(activity, parent);
 
         for (ImageView star : stars) {
