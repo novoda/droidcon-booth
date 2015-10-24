@@ -14,6 +14,8 @@ import com.novoda.canvas.base.NovodaActivityTest;
 
 import java.util.Random;
 
+import static org.fest.assertions.api.Assertions.assertThat;
+
 public class QrCodeActivityTest extends NovodaActivityTest {
 
     private static final Random RANDOM = new Random();
@@ -50,7 +52,7 @@ public class QrCodeActivityTest extends NovodaActivityTest {
             }
             qrCodeImageView.setImageBitmap(bmp);
         } catch (WriterException e) {
-            e.printStackTrace();
+           assertThat(e).isNull();
         }
     }
 }
