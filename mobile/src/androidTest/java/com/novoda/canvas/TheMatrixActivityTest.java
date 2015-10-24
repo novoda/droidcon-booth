@@ -64,12 +64,9 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
 
     private void draw() {
         for (int y = 0; y < (parent.getHeight() / FONT_SIZE) * 2; y++) {
-            char character = getRandomCharacter();
-
             TextView charView = view;
             charView.setX((random.nextInt(parent.getWidth() / FONT_SIZE) - 1) * FONT_SIZE);
             charView.setY(y * (FONT_SIZE / 2));
-            charView.setText(String.valueOf(character));
             charView.setTextColor(Color.rgb(0, 255 - (y * 2), 0));
             createNextRainDropView();
         }
