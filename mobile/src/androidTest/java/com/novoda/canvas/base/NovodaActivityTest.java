@@ -1,9 +1,13 @@
 package com.novoda.canvas.base;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.SystemClock;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.view.ViewGroup;
 
 import com.novoda.canvas.NovodaActivity;
 
@@ -39,5 +43,18 @@ public abstract class NovodaActivityTest {
     }
 
     public abstract void startTestFor(Activity activity);
+
+    protected ViewGroup getParent(Activity activity) {
+        return (ViewGroup) activity.findViewById(android.R.id.content);
+    }
+
+    @ColorInt
+    protected int getColor(@ColorRes int color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return activity.getResources().getColor(color, activity.getTheme());
+        } else {
+            return activity.getResources().getColor(color);
+        }
+    }
 
 }
