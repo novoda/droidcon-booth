@@ -18,11 +18,14 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
 
     private ViewGroup parent;
     private TextView view;
+    private int xPosition;
+    private boolean drawOneColumnAtATime;
 
     @Override
     public void startTestFor(Activity activity) {
         parent = getParent(activity);
         parent.setBackgroundColor(getColor(R.color.matrix_background));
+        drawOneColumnAtATime = RANDOM.nextBoolean();
         createNextRainDropView();
         scroll();
     }
@@ -63,13 +66,23 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
     }
 
     private void draw() {
+        if (drawOneColumnAtATime) {
+            calculateXPosition();
+        }
         for (int y = 0; y < (parent.getHeight() / FONT_SIZE) * 2; y++) {
             TextView charView = view;
-            charView.setX((RANDOM.nextInt(parent.getWidth() / FONT_SIZE) - 1) * FONT_SIZE);
+            if(!drawOneColumnAtATime) {
+                calculateXPosition();
+            }
+            charView.setX(xPosition);
             charView.setY(y * (FONT_SIZE / 2));
             charView.setTextColor(Color.rgb(0, 255 - (y * 2), 0));
             createNextRainDropView();
         }
+    }
+
+    private void calculateXPosition() {
+        xPosition = (RANDOM.nextInt(parent.getWidth() / FONT_SIZE) - 1) * FONT_SIZE;
     }
 
 }
