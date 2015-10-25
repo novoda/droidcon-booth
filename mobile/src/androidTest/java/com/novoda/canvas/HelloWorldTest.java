@@ -22,7 +22,8 @@ public class HelloWorldTest extends NovodaActivityTest {
         text.setTextSize(150);
         root.addView(text);
 
-        for (int i = 0; i < 200; i++) {
+        int numberOfChanges = NovodaActivityTest.TIME_LIMIT_FOR_TEST_IN_SECONDS * 1000 / COLOUR_CHANGE_INTERVAL;
+        for (int i = 0; i < numberOfChanges; i++) {
             root.postDelayed(new Runnable() {
                 @Override
                 public void run() {
