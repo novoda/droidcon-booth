@@ -6,9 +6,9 @@ import java.util.concurrent.TimeUnit;
 
 abstract class BaseEngine implements Engine {
 
-    private static ScheduledExecutorService EXECUTOR = Executors.newSingleThreadScheduledExecutor();
-
     private final long periodInMillis;
+
+    private ScheduledExecutorService scheduledExecutorService;
 
     public BaseEngine(long periodInMillis) {
         this.periodInMillis = periodInMillis;
@@ -16,13 +16,18 @@ abstract class BaseEngine implements Engine {
 
     @Override
     public void start() {
-        EXECUTOR.scheduleAtFixedRate(getTaskToPerform(), 0, periodInMillis, TimeUnit.MILLISECONDS);
+        scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+        scheduledExecutorService.scheduleAtFixedRate(getTaskToPerform(), 0, periodInMillis, TimeUnit.MILLISECONDS);
     }
 
     protected abstract Runnable getTaskToPerform();
 
     @Override
     public void stop() {
-        EXECUTOR.shutdown();
+        if (scheduledExecutorService == null) {
+            throw new IllegalStateException("Cannot stop a non started engine");
+        }
+
+        scheduledExecutorService.shutdown();
     }
 }
