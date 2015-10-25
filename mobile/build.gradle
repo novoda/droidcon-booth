@@ -41,4 +41,5 @@ dependencies {
         exclude module: 'recyclerview-v7'
     }
     androidTestCompile 'org.easytesting:fest-assert-core:2.0M10'
+    androidTestCompile 'com.google.zxing:core:3.2.1'
 }
