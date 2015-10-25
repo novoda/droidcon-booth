@@ -2,6 +2,7 @@ package com.novoda.canvas;
 
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -11,6 +12,7 @@ import android.os.SystemClock;
 import com.novoda.canvas.base.NovodaActivityTest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -22,24 +24,24 @@ public class AppMasterTest extends NovodaActivityTest {
     public void startTestFor(Activity activity) {
         Intent launchIntent = new Intent(Intent.ACTION_MAIN);
         List<ResolveInfo> activities = activity.getPackageManager().queryIntentActivities(launchIntent, PackageManager.MATCH_DEFAULT_ONLY);
-        filterList(activities);
+        List<ResolveInfo> filteredActivities = filterList(activity, activities);
         for (int i = 0; i < 20; i++) {
-            maybeLaunchRandomActivity(activity, launchIntent, activities);
+            maybeLaunchRandomActivity(activity, launchIntent, filteredActivities);
         }
     }
 
-    private List<ResolveInfo> filterList(List<ResolveInfo> activities) {
+    private List<ResolveInfo> filterList(Context context, List<ResolveInfo> activities) {
         List<ResolveInfo> filteredList = new ArrayList<>();
         for (ResolveInfo activity: activities) {
-            if (isWhiteListed(activity)){
+            if (isWhiteListed(context, activity)){
                 filteredList.add(activity);
             }
         }
         return filteredList;
     }
 
-    private boolean isWhiteListed(ResolveInfo activity) {
-        return true;
+    private boolean isWhiteListed(Context context, ResolveInfo resolveInfo) {
+        return Arrays.binarySearch(context.getResources().getStringArray(R.array.white_listed_apps), resolveInfo.activityInfo.packageName) >= 0;
     }
 
     private void maybeLaunchRandomActivity(Activity activity, Intent launchIntent, List<ResolveInfo> activities) {
