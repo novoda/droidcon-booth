@@ -6,13 +6,12 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.os.SystemClock;
 
 import com.novoda.canvas.base.NovodaActivityTest;
 
 import java.util.List;
 import java.util.Random;
-
-import static org.fest.assertions.api.Assertions.assertThat;
 
 public class AppMasterTest extends NovodaActivityTest {
 
@@ -38,11 +37,7 @@ public class AppMasterTest extends NovodaActivityTest {
     }
 
     private void sleepForAWhile() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            assertThat(e).isNull();
-        }
+        SystemClock.sleep(1000);
     }
 
     private boolean noPermissionRequired(String permission) {
