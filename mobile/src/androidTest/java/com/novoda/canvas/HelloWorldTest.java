@@ -16,7 +16,7 @@ public class HelloWorldTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
-        final ViewGroup root = (ViewGroup) getParent(activity);
+        final ViewGroup root = getParent(activity);
         final TextView text = new TextView(activity);
         text.setText("HELLO WORLD");
         text.setTextSize(150);
