@@ -76,11 +76,11 @@ class SpiralPainter {
             this.relativeY = relativeY;
         }
 
-        private float getXFor(Canvas canvas) {
+        private float getXFor(@NonNull Canvas canvas) {
             return canvas.getWidth() * relativeX;
         }
 
-        private float getYFor(Canvas canvas) {
+        private float getYFor(@NonNull Canvas canvas) {
             return canvas.getHeight() * relativeY;
         }
 
