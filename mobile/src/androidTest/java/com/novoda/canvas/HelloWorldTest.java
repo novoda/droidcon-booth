@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.novoda.canvas.base.NovodaActivityTest;
 
-import java.util.Random;
+import static com.novoda.canvas.NovodaActivity.RANDOM;
 
 public class HelloWorldTest extends NovodaActivityTest {
 
@@ -38,7 +38,7 @@ public class HelloWorldTest extends NovodaActivityTest {
     }
 
     private int randomByte() {
-        return new Random().nextInt(BYTE_AS_INT_RANGE);
+        return RANDOM.nextInt(BYTE_AS_INT_RANGE);
     }
 
 }
