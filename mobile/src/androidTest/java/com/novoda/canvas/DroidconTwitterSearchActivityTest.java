@@ -26,6 +26,8 @@ import twitter4j.TwitterFactory;
 import twitter4j.auth.OAuth2Token;
 import twitter4j.conf.ConfigurationBuilder;
 
+import static com.novoda.canvas.NovodaActivity.RANDOM;
+
 public class DroidconTwitterSearchActivityTest extends NovodaActivityTest {
     private static final String FAILURE_TEXT = "Tweet to #DroidconUK15 and it won't be shown here...because I've thrown an exception.";
 
@@ -35,19 +37,18 @@ public class DroidconTwitterSearchActivityTest extends NovodaActivityTest {
     @Override
     public void startTestFor(Activity activity) {
         this.activity = activity;
-        Random random = new Random();
 
         tweetView = new TextView(activity);
         tweetView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
         tweetView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         tweetView.setVisibility(View.GONE);
         tweetView.setGravity(Gravity.CENTER);
-        RandomColorFactory randomColorFactory = new RandomColorFactory(random);
+        RandomColorFactory randomColorFactory = new RandomColorFactory(RANDOM);
         tweetView.setTextColor(randomColorFactory.getColor());
         getParent(activity).addView(tweetView);
 
         RandomAnimationFactory randomAnimationFactory = new RandomAnimationFactory(activity.getApplicationContext(), random);
-        new SearchOnTwitter(random, randomAnimationFactory).execute("%23droidconuk15");
+        new SearchOnTwitter(RANDOM, randomAnimationFactory).execute("%23droidconuk15");
     }
 
     private class SearchOnTwitter extends AsyncTask<String, Void, Integer> {
