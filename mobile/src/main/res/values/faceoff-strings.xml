@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="face_off_int">\@IntDef</string>
+  <string name="face_off_enum">enum</string>
+  <string name="face_off_draw">Draw!</string>
+  <string name="face_off_enum_win">Enum wins!</string>
+  <string name="face_off_int_win">\@IntDef wins!</string>
+</resources>
