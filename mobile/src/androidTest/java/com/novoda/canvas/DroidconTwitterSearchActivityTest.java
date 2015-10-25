@@ -2,21 +2,17 @@ package com.novoda.canvas;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.graphics.Color;
 import android.os.AsyncTask;
-import android.support.annotation.AnimRes;
-import android.support.annotation.ColorInt;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.novoda.canvas.base.NovodaActivityTest;
+import com.novoda.canvas.base.RandomAnimationFactory;
+import com.novoda.canvas.base.RandomColorFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,25 +48,6 @@ public class DroidconTwitterSearchActivityTest extends NovodaActivityTest {
 
         RandomAnimationFactory randomAnimationFactory = new RandomAnimationFactory(activity.getApplicationContext(), random);
         new SearchOnTwitter(random, randomAnimationFactory).execute("%23droidconuk15");
-    }
-
-    private static class RandomColorFactory {
-
-        public static final int BASE_LEVEL = 50;
-        public static final int TOP_UP_LEVEL = 205;
-        private final Random random;
-
-        private RandomColorFactory(Random random) {
-            this.random = random;
-        }
-
-        @ColorInt
-        public int getColor() {
-            int red = BASE_LEVEL + random.nextInt(TOP_UP_LEVEL);
-            int green = BASE_LEVEL + random.nextInt(TOP_UP_LEVEL);
-            int blue = BASE_LEVEL + random.nextInt(TOP_UP_LEVEL);
-            return Color.rgb(red, green, blue);
-        }
     }
 
     private class SearchOnTwitter extends AsyncTask<String, Void, Integer> {
@@ -181,43 +158,4 @@ public class DroidconTwitterSearchActivityTest extends NovodaActivityTest {
         }
     }
 
-    private static class RandomAnimationFactory {
-
-        private final Context context;
-        private final Random random;
-
-
-        private RandomAnimationFactory(Context context, Random random) {
-            this.context = context;
-            this.random = random;
-        }
-
-        public Animation getAnimation() {
-            return AnimationUtils.loadAnimation(context, getRandomAnimation());
-        }
-
-        @AnimRes
-        private int getRandomAnimation() {
-            switch (random.nextInt(8)) {
-                case 0:
-                    return android.support.design.R.anim.abc_grow_fade_in_from_bottom;
-                case 1:
-                    return android.support.design.R.anim.abc_popup_enter;
-                case 2:
-                    return android.support.design.R.anim.abc_slide_in_bottom;
-                case 3:
-                    return android.support.design.R.anim.abc_slide_in_top;
-                case 4:
-                    return android.support.design.R.anim.design_fab_in;
-                case 5:
-                    return android.support.design.R.anim.design_snackbar_in;
-                case 6:
-                    return android.R.anim.fade_in;
-                case 7:
-                    return android.R.anim.slide_in_left;
-                default:
-                    return android.R.anim.slide_in_left;
-            }
-        }
-    }
 }
