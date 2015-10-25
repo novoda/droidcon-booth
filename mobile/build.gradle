@@ -21,6 +21,10 @@ android {
         }
     }
 
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+    }
+
 }
 
 dependencies {
@@ -40,5 +44,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude module: 'recyclerview-v7'
     }
+    androidTestCompile 'com.twitter:hbc-twitter4j:2.2.0'
     androidTestCompile 'org.easytesting:fest-assert-core:2.0M10'
 }
