@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class AppMasterTest extends NovodaActivityTest {
 
-    public static final Random RANDOM = new Random();
+    private static final Random RANDOM = new Random();
 
     @Override
     public void startTestFor(Activity activity) {
