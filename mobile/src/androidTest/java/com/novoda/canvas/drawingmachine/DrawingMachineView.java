@@ -3,6 +3,8 @@ package com.novoda.canvas.drawingmachine;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.support.annotation.ColorInt;
+import android.support.v4.content.ContextCompat;
 import android.view.TextureView;
 import android.view.ViewGroup;
 
@@ -33,17 +35,18 @@ class DrawingMachineView extends TextureView {
 
     private void checkForCanvas() {
         if (canvas == null) {
-            createCanvas(getWidth(), getHeight());
+            int backgroundColour = ContextCompat.getColor(getContext(), R.color.beige);
+            createCanvas(getWidth(), getHeight(), backgroundColour);
         }
     }
 
-    private void createCanvas(int width, int height) {
+    private void createCanvas(int width, int height, @ColorInt int backgroundColour) {
         if (bitmap != null) {
             bitmap.recycle();
         }
         bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
-        canvas.drawColor(getContext().getColor(R.color.beige));
+        canvas.drawColor(backgroundColour);
     }
 
     public Bitmap getBitmap() {
