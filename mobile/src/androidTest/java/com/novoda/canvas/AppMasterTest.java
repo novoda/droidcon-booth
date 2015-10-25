@@ -49,6 +49,7 @@ public class AppMasterTest extends NovodaActivityTest {
         ActivityInfo randomActivity = activities.get(randomIndex).activityInfo;
         if (noPermissionRequired(randomActivity.permission)) {
             launchIntent.setComponent(new ComponentName(randomActivity.packageName, randomActivity.name));
+            launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             activity.startActivity(launchIntent);
             sleepForAWhile();
         }
