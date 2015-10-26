@@ -8,13 +8,12 @@ import android.widget.TextView;
 
 import com.novoda.canvas.base.NovodaActivityTest;
 
-import java.util.Random;
+import static com.novoda.canvas.NovodaActivity.RANDOM;
 
 public class TheMatrixActivityTest extends NovodaActivityTest {
 
     private static final int FONT_SIZE = 20;
     private static final String CHARACTERS = "セ ソ キ ク ケ コ イ ウ エ オ ジャ な あ た ア カ サ ザ ジ  ズ ゼ ゾ シ ス";
-    private static final Random RANDOM = new Random();
 
     private ViewGroup parent;
     private TextView view;
@@ -71,7 +70,7 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
         }
         for (int y = 0; y < (parent.getHeight() / FONT_SIZE) * 2; y++) {
             TextView charView = view;
-            if(!drawOneColumnAtATime) {
+            if (!drawOneColumnAtATime) {
                 calculateXPosition();
             }
             charView.setX(xPosition);

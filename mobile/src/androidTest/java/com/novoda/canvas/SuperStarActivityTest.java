@@ -11,11 +11,11 @@ import com.novoda.canvas.base.NovodaActivityTest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
+import static com.novoda.canvas.NovodaActivity.RANDOM;
 
 public class SuperStarActivityTest extends NovodaActivityTest {
 
-    private static final Random RANDOM = new Random();
     private static final int STAR_COUNT = 10;
 
     private static final int[] STARS_RESOURCE = {android.R.drawable.star_big_on, android.R.drawable.star_on, android.R.drawable.btn_star_big_on};
