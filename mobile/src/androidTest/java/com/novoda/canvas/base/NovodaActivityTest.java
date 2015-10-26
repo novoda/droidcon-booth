@@ -21,6 +21,7 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public abstract class NovodaActivityTest {
 
+    public static final int TIME_LIMIT_FOR_TEST_IN_SECONDS = 10;
     @Rule
     public ActivityTestRule<NovodaActivity> activityRule = new ActivityTestRule<>(NovodaActivity.class);
 
@@ -39,7 +40,7 @@ public abstract class NovodaActivityTest {
                 startTestFor(activity);
             }
         });
-        SystemClock.sleep(TimeUnit.SECONDS.toMillis(10));
+        SystemClock.sleep(TimeUnit.SECONDS.toMillis(TIME_LIMIT_FOR_TEST_IN_SECONDS));
     }
 
     public abstract void startTestFor(Activity activity);

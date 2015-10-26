@@ -12,13 +12,11 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.novoda.canvas.base.NovodaActivityTest;
 
-import java.util.Random;
-
+import static com.novoda.canvas.NovodaActivity.RANDOM;
 import static org.fest.assertions.api.Assertions.assertThat;
 
 public class QrCodeActivityTest extends NovodaActivityTest {
 
-    private static final Random RANDOM = new Random();
     private static final String[] listOfUrls = {
             "https://novoda.com",
             "http://droidcon.co.uk",

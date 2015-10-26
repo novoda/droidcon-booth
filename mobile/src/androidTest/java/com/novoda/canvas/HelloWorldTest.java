@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.novoda.canvas.base.NovodaActivityTest;
 
-import java.util.Random;
+import static com.novoda.canvas.NovodaActivity.RANDOM;
 
 public class HelloWorldTest extends NovodaActivityTest {
 
@@ -16,13 +16,14 @@ public class HelloWorldTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
-        final ViewGroup root = (ViewGroup) getParent(activity);
+        final ViewGroup root = getParent(activity);
         final TextView text = new TextView(activity);
         text.setText("HELLO WORLD");
         text.setTextSize(150);
         root.addView(text);
 
-        for (int i = 0; i < 200; i++) {
+        int numberOfChanges = NovodaActivityTest.TIME_LIMIT_FOR_TEST_IN_SECONDS * 1000 / COLOUR_CHANGE_INTERVAL;
+        for (int i = 0; i < numberOfChanges; i++) {
             root.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -38,7 +39,7 @@ public class HelloWorldTest extends NovodaActivityTest {
     }
 
     private int randomByte() {
-        return new Random().nextInt(BYTE_AS_INT_RANGE);
+        return RANDOM.nextInt(BYTE_AS_INT_RANGE);
     }
 
 }
