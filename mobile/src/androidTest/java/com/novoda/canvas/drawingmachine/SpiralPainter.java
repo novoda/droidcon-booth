@@ -12,7 +12,7 @@ class SpiralPainter {
 
     private static final double RADIUS_INCREMENT = 0.125;
     private static final double ANGLE_INCREMENT = 0.005;
-    private static final int LINE_ALPHA = 10;
+    private static final int LINE_ALPHA = 30;
 
     private final Paint linePaint;
     private final List<Centre> centres;
@@ -53,8 +53,8 @@ class SpiralPainter {
             Centre end = centres.get((i + 1) % centres.size());
             float startX = (float) (start.getXFor(canvas) + radius * Math.sin(angle));
             float startY = (float) (start.getYFor(canvas) + radius * Math.cos(angle));
-            float endX = (float) (end.getXFor(canvas) + radius * Math.sin(angle));
-            float endY = (float) (end.getYFor(canvas) + radius * Math.cos(angle));
+            float endX = (float) (end.getXFor(canvas) + radius * Math.sin(-angle));
+            float endY = (float) (end.getYFor(canvas) + radius * Math.cos(-angle));
 
             canvas.drawLine(startX, startY, endX, endY, linePaint);
         }
