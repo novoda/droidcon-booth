@@ -3,21 +3,36 @@ package com.novoda.canvas;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Animatable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.widget.ImageView;
 
 import com.novoda.canvas.base.NovodaActivityTest;
-
-import org.junit.After;
 
 import tyrantgit.explosionfield.ExplosionField;
 
 import static android.widget.ImageView.ScaleType.CENTER_INSIDE;
 
 public class AnimatedVectorActivityTest extends NovodaActivityTest {
+
+    enum Theme {
+        BLUE(R.drawable.vector_animated_novoda_blue_logo, R.color.vector_white),
+        WHITE(R.drawable.vector_animated_novoda_white_logo, R.color.vector_blue);
+
+        private final int vectorDrawableRes;
+        private final int backgroundColorRes;
+
+        Theme(@DrawableRes int vectorDrawableRes, @ColorRes int backgroundColorRes) {
+            this.vectorDrawableRes = vectorDrawableRes;
+            this.backgroundColorRes = backgroundColorRes;
+        }
+    }
 
     public static final Handler MAIN_THREAD = new Handler(Looper.getMainLooper());
     public static final int INITIAL_DELAY_MILLIS = 2000;
@@ -28,22 +43,33 @@ public class AnimatedVectorActivityTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
-        imageView = createImageView(activity);
+        Theme theme = NovodaActivity.RANDOM.nextBoolean() ? Theme.BLUE : Theme.WHITE;
+
+        setBackground(activity, theme);
+
+        imageView = createImageView(activity, theme);
         getParent(activity).addView(imageView);
+
         explosionField = ExplosionField.attach2Window(activity);
 
         delayInitialAnimation();
         delayExplosion();
     }
 
-    private ImageView createImageView(Context context) {
+    private void setBackground(Activity activity, Theme theme) {
+        @ColorInt int color = activity.getResources().getColor(theme.backgroundColorRes);
+        ColorDrawable background = new ColorDrawable(color);
+        getParent(activity).setBackground(background);
+    }
+
+    private ImageView createImageView(Context context, Theme theme) {
         ImageView imageView = new ImageView(context);
 
         int padding = context.getResources().getDimensionPixelSize(R.dimen.image_padding);
         imageView.setPadding(padding, padding, padding, padding);
         imageView.setScaleType(CENTER_INSIDE);
 
-        AnimatedVectorDrawableCompat vectorDrawable = AnimatedVectorDrawableCompat.create(context, R.drawable.vector_animated_novoda_blue_logo);
+        AnimatedVectorDrawableCompat vectorDrawable = AnimatedVectorDrawableCompat.create(context, theme.vectorDrawableRes);
         imageView.setImageDrawable(vectorDrawable);
         return imageView;
     }
@@ -71,8 +97,4 @@ public class AnimatedVectorActivityTest extends NovodaActivityTest {
         );
     }
 
-    @After
-    public void tearDown() {
-        explosionField.clear();
-    }
 }
