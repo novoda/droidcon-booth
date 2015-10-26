@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:auto="http://schemas.android.com/apk/res-auto"
+  auto:drawable="@drawable/vector_novoda_blue_logo">
+
+  <target
+    auto:animation="@animator/vector_novoda_animator"
+    auto:name="letters1" />
+
+  <target
+    auto:animation="@animator/vector_novoda_animator"
+    auto:name="letters2" />
+
+  <target
+    auto:animation="@animator/vector_dot_animator"
+    auto:name="dot1" />
+
+  <target
+    auto:animation="@animator/vector_dot_animator"
+    auto:name="dot2" />
+
+  <target
+    auto:animation="@animator/vector_dot_animator"
+    auto:name="dot3" />
+
+</animated-vector>
