@@ -15,10 +15,6 @@ import android.widget.ImageView;
 
 import com.novoda.canvas.base.NovodaActivityTest;
 
-import java.util.Random;
-
-import org.junit.After;
-
 import tyrantgit.explosionfield.ExplosionField;
 
 import static android.widget.ImageView.ScaleType.CENTER_INSIDE;
@@ -47,11 +43,13 @@ public class AnimatedVectorActivityTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
-        Theme theme = new Random().nextBoolean() ? Theme.BLUE : Theme.WHITE;
+        Theme theme = NovodaActivity.RANDOM.nextBoolean() ? Theme.BLUE : Theme.WHITE;
+
         setBackground(activity, theme);
 
         imageView = createImageView(activity, theme);
         getParent(activity).addView(imageView);
+
         explosionField = ExplosionField.attach2Window(activity);
 
         delayInitialAnimation();
