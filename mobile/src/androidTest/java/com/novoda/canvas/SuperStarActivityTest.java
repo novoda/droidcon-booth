@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 
 import com.novoda.canvas.base.NovodaActivityTest;
@@ -18,6 +19,7 @@ public class SuperStarActivityTest extends NovodaActivityTest {
 
     private static final int[] STARS_RESOURCE = {android.R.drawable.star_big_on, android.R.drawable.star_on, android.R.drawable.btn_star_big_on};
     private static final int BATCH_SIZE = 20;
+    private static final int OFF_SCREEN_OFFSET = 500;
 
     @Override
     public void startTestFor(final Activity activity) {
@@ -63,14 +65,23 @@ public class SuperStarActivityTest extends NovodaActivityTest {
 
     private void rotateStar(ImageView star) {
         ObjectAnimator rotation = ObjectAnimator.ofFloat(star, "rotation", 1080);
-        rotation.setDuration(RANDOM.nextInt(12000) + 6000);
+        rotation.setDuration(getRotationDuration());
         rotation.start();
     }
 
+    private int getRotationDuration() {
+        return RANDOM.nextInt(12000) + 6000;
+    }
+
     private void bounceStar(ImageView star, View parent) {
-        ObjectAnimator rise = ObjectAnimator.ofFloat(star, "y", -500, parent.getHeight() + 500);
-        rise.setDuration(RANDOM.nextInt(6000) + 3000);
-        rise.start();
+        ObjectAnimator fall = ObjectAnimator.ofFloat(star, "y", -getMaxStarSize(parent), parent.getHeight() + getMaxStarSize(parent));
+        fall.setDuration(getFallDuration());
+        fall.setInterpolator(new AccelerateInterpolator());
+        fall.start();
+    }
+
+    private int getFallDuration() {
+        return RANDOM.nextInt(6000) + 3000;
     }
 
 }
