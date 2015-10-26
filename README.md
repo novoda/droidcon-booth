@@ -1,6 +1,6 @@
 droidcon-booth
 =============
-[insert fancy picture of booth here!]
+[insert fancy picture of booth here]
 
 What is it?
 ==
@@ -25,13 +25,13 @@ You can do almost anything *except...*
 - Take automated pictures
 - Evil things to the test runner or devices
 - Sound (sorry guys, but we have to stand next to it) 
-
+- Touch other peoples tests, cmon we're all buds!
 
 Stuff to try and avoid
-- Touching the production source code. We would prefer you hacked around limitations with reflection
+- Touching the production source code. We would prefer you hacked around limitations with reflection. Adding resources to the main source set is fine though.
 - Network. It's going to be busy, we can't guarantee the devices will be able to handle it.
 
-if you're not sure, do it anyways 
+if you're not sure, do it anyways! 
 
 
 How to take part :
@@ -48,10 +48,17 @@ Implement `startTestFor`
 PROFIT
 
 
-After you've made your legit test, record a gif of the test and raise a PR against this repo. 
+After you've made your *super legit test*, record a gif and raise a PR against this repo. 
+Finally, we need a way to get in touch if you win!
+
+Make sure you've done at least one of these  
+- your github profile is up to date
+- you've put some form of contact in the PR description
+- you've put some form of contact as a comment in your test class
+
+
 **EZ.**
 
-
-
-Recording your test running via android studio's screen recording and then convert to a gif. We use >
+***
+You can record your test running via android studio's screen recording and then convert to a gif. We use >
 `ffmpeg -i dank-test.mp4 -vf scale=360:-1 -r 15 dank-test.gif` but there's also a website for it http://ezgif.com/video-to-gif
