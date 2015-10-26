@@ -16,48 +16,60 @@ import static com.novoda.canvas.NovodaActivity.RANDOM;
 
 public class SuperStarActivityTest extends NovodaActivityTest {
 
-    private static final int STAR_COUNT = 10;
-
     private static final int[] STARS_RESOURCE = {android.R.drawable.star_big_on, android.R.drawable.star_on, android.R.drawable.btn_star_big_on};
+    private static final int BATCH_SIZE = 20;
 
     @Override
-    public void startTestFor(Activity activity) {
-        View parent = getParent(activity);
-        List<ImageView> stars = createStars(activity, parent);
+    public void startTestFor(final Activity activity) {
+        final View parent = getParent(activity);
+        parent.setBackgroundColor(activity.getResources().getColor(android.R.color.black));
 
-        for (ImageView star : stars) {
-            ((ViewGroup) parent).addView(star);
-            rotateStar(star);
-            bounceStar(star, parent);
+        for (int batchIndex = 0; batchIndex < 20; batchIndex++) {
+            parent.postDelayed(
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            final List<ImageView> stars = createStars(BATCH_SIZE, activity, parent);
+                            for (int starIndex = 0; starIndex < BATCH_SIZE; starIndex++) {
+                                ImageView star = stars.get(starIndex);
+                                ((ViewGroup) parent).addView(star);
+                                rotateStar(star);
+                                bounceStar(star, parent);
+                            }
+                        }
+                    }
+                    , batchIndex * 500
+            );
         }
+
     }
 
-    private List<ImageView> createStars(Activity activity, View parent) {
+    private List<ImageView> createStars(int batchSize, Activity activity, View parent) {
         List<ImageView> stars = new ArrayList<>();
-        for (int i = 0; i < STAR_COUNT; i++) {
+        for (int i = 0; i < batchSize; i++) {
             ImageView star = new ImageView(activity);
             star.setBackgroundResource(STARS_RESOURCE[RANDOM.nextInt(STARS_RESOURCE.length)]);
-            int starSize = RANDOM.nextInt(parent.getWidth() / 2);
+            int starSize = RANDOM.nextInt(getMaxStarSize(parent));
             star.setLayoutParams(new ActionBar.LayoutParams(starSize, starSize));
-            star.setX(RANDOM.nextInt(parent.getWidth() / 2));
+            star.setX(RANDOM.nextInt(parent.getWidth()));
             stars.add(star);
         }
         return stars;
     }
 
+    private int getMaxStarSize(View parent) {
+        return parent.getWidth() / 10;
+    }
+
     private void rotateStar(ImageView star) {
         ObjectAnimator rotation = ObjectAnimator.ofFloat(star, "rotation", 1080);
-        rotation.setDuration(RANDOM.nextInt(1500));
-        rotation.setRepeatCount(ObjectAnimator.INFINITE);
-        rotation.setRepeatMode(ObjectAnimator.REVERSE);
+        rotation.setDuration(RANDOM.nextInt(12000) + 6000);
         rotation.start();
     }
 
     private void bounceStar(ImageView star, View parent) {
-        ObjectAnimator rise = ObjectAnimator.ofFloat(star, "y", 0, parent.getHeight() + star.getHeight());
-        rise.setDuration(RANDOM.nextInt(2000));
-        rise.setRepeatCount(ObjectAnimator.INFINITE);
-        rise.setRepeatMode(ObjectAnimator.REVERSE);
+        ObjectAnimator rise = ObjectAnimator.ofFloat(star, "y", -500, parent.getHeight() + 500);
+        rise.setDuration(RANDOM.nextInt(6000) + 3000);
         rise.start();
     }
 
