@@ -97,8 +97,4 @@ public class AnimatedVectorActivityTest extends NovodaActivityTest {
         );
     }
 
-    @After
-    public void tearDown() {
-        explosionField.clear();
-    }
 }
