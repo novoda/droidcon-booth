@@ -9,7 +9,10 @@ A device wall which constantly polls github for connected android tests! *"tests
 
 and **YOU** can add to it!
 
-[insert fancy example gifs]
+
+[Logo](https://github.com/novoda/droidcon-booth/pull/18) | [#enumsmatter](https://github.com/novoda/droidcon-booth/pull/5)
+| --- | ---
+![logo](https://cloud.githubusercontent.com/assets/1626673/10728185/0a054c52-7be0-11e5-8a75-ab5c1b2bf0dc.gif)|![enumsmatter](https://cloud.githubusercontent.com/assets/466546/10677915/15e2e416-7907-11e5-9cb4-a53df89c1915.gif)
 
 Rules :
 ==
