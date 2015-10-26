@@ -56,8 +56,7 @@ public class AnimatedVectorActivityTest extends NovodaActivityTest {
                         Drawable drawable = imageView.getDrawable();
                         ((Animatable) drawable).start();
                     }
-                }
-                , INITIAL_DELAY_MILLIS
+                }, INITIAL_DELAY_MILLIS
         );
     }
 
@@ -68,8 +67,7 @@ public class AnimatedVectorActivityTest extends NovodaActivityTest {
                     public void run() {
                         explosionField.explode(imageView);
                     }
-                }
-                , EXPLOSION_DELAY_MILLIS
+                }, EXPLOSION_DELAY_MILLIS
         );
     }
 
