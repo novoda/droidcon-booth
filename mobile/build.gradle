@@ -47,6 +47,7 @@ dependencies {
         exclude module: 'recyclerview-v7'
     }
     androidTestCompile 'com.twitter:hbc-twitter4j:2.2.0'
+    androidTestCompile 'tyrantgit:explosionfield:1.0.1'
     androidTestCompile 'org.easytesting:fest-assert-core:2.0M10'
     androidTestCompile 'com.google.zxing:core:3.2.1'
 }
