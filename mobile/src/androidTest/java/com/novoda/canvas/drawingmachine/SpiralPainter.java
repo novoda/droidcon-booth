@@ -1,6 +1,7 @@
 package com.novoda.canvas.drawingmachine;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
@@ -15,13 +16,14 @@ class SpiralPainter {
     private static final int LINE_ALPHA = 30;
 
     private final Paint linePaint;
+    private final Paint pointPaint;
     private final List<Centre> centres;
 
     private float angle;
     private float radius;
 
     public static SpiralPainter newInstance(@ColorInt int colour) {
-        return new SpiralPainter(createCentres(), createLinePaint(colour));
+        return new SpiralPainter(createCentres(), createLinePaint(colour), createPointPaint());
     }
 
     @NonNull
@@ -42,21 +44,30 @@ class SpiralPainter {
         return paint;
     }
 
-    private SpiralPainter(List<Centre> centres, Paint linePaint) {
+    private static Paint createPointPaint() {
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(Color.BLACK);
+        return paint;
+    }
+
+    private SpiralPainter(List<Centre> centres, Paint linePaint, Paint pointPaint) {
         this.centres = centres;
         this.linePaint = linePaint;
+        this.pointPaint = pointPaint;
     }
 
     void paintLinesOn(@NonNull Canvas canvas) {
         for (int i = 0; i < centres.size(); i++) {
             Centre start = centres.get(i);
             Centre end = centres.get((i + 1) % centres.size());
-            float startX = (float) (start.getXFor(canvas) + radius * Math.sin(angle));
-            float startY = (float) (start.getYFor(canvas) + radius * Math.cos(angle));
-            float endX = (float) (end.getXFor(canvas) + radius * Math.sin(-angle));
-            float endY = (float) (end.getYFor(canvas) + radius * Math.cos(-angle));
+            float startX = (float) (start.getXFor(canvas) + radius * Math.sin(-angle));
+            float startY = (float) (start.getYFor(canvas) + radius * Math.cos(-angle));
+            float endX = (float) (end.getXFor(canvas) + radius * Math.sin(angle));
+            float endY = (float) (end.getYFor(canvas) + radius * Math.cos(angle));
 
             canvas.drawLine(startX, startY, endX, endY, linePaint);
+            canvas.drawPoint(startX, startY, pointPaint);
+            canvas.drawPoint(endX, endY, pointPaint);
         }
         updateCoordinates();
     }
