@@ -1,8 +1,8 @@
 package com.novoda.canvas.drawingmachine;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -20,8 +20,8 @@ class SpiralPainter {
     private float angle;
     private float radius;
 
-    public static SpiralPainter newInstance() {
-        return new SpiralPainter(createCentres(), createLinePaint());
+    public static SpiralPainter newInstance(@ColorInt int colour) {
+        return new SpiralPainter(createCentres(), createLinePaint(colour));
     }
 
     @NonNull
@@ -34,9 +34,9 @@ class SpiralPainter {
     }
 
     @NonNull
-    private static Paint createLinePaint() {
+    private static Paint createLinePaint(@ColorInt int colour) {
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.BLACK);
+        paint.setColor(colour);
         paint.setAlpha(LINE_ALPHA);
         paint.setStyle(Paint.Style.STROKE);
         return paint;
