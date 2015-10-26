@@ -2,13 +2,13 @@ package com.novoda.canvas;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.widget.ImageView;
@@ -26,15 +26,15 @@ import static android.widget.ImageView.ScaleType.CENTER_INSIDE;
 public class AnimatedVectorActivityTest extends NovodaActivityTest {
 
     enum Theme {
-        BLUE(R.drawable.vector_animated_novoda_blue_logo, Color.parseColor("#FFFFFF")),
-        WHITE(R.drawable.vector_animated_novoda_white_logo, Color.parseColor("#26A3DB"));
+        BLUE(R.drawable.vector_animated_novoda_blue_logo, R.color.vector_white),
+        WHITE(R.drawable.vector_animated_novoda_white_logo, R.color.vector_blue);
 
         private final int vectorDrawableRes;
-        private final int backgroundColor;
+        private final int backgroundColorRes;
 
-        Theme(@DrawableRes int vectorDrawableRes, @ColorInt int backgroundColor) {
+        Theme(@DrawableRes int vectorDrawableRes, @ColorRes int backgroundColorRes) {
             this.vectorDrawableRes = vectorDrawableRes;
-            this.backgroundColor = backgroundColor;
+            this.backgroundColorRes = backgroundColorRes;
         }
     }
 
@@ -48,13 +48,20 @@ public class AnimatedVectorActivityTest extends NovodaActivityTest {
     @Override
     public void startTestFor(Activity activity) {
         Theme theme = new Random().nextBoolean() ? Theme.BLUE : Theme.WHITE;
-        activity.getWindow().setBackgroundDrawable(new ColorDrawable(theme.backgroundColor));
+        setBackground(activity, theme);
+
         imageView = createImageView(activity, theme);
         getParent(activity).addView(imageView);
         explosionField = ExplosionField.attach2Window(activity);
 
         delayInitialAnimation();
         delayExplosion();
+    }
+
+    private void setBackground(Activity activity, Theme theme) {
+        @ColorInt int color = activity.getResources().getColor(theme.backgroundColorRes);
+        ColorDrawable background = new ColorDrawable(color);
+        getParent(activity).setBackground(background);
     }
 
     private ImageView createImageView(Context context, Theme theme) {
