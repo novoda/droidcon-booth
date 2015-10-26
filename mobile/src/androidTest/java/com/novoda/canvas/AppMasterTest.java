@@ -16,9 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class AppMasterTest extends NovodaActivityTest {
+import static com.novoda.canvas.NovodaActivity.RANDOM;
 
-    private static final Random RANDOM = new Random();
+public class AppMasterTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
