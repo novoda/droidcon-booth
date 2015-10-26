@@ -14,7 +14,6 @@ import com.novoda.canvas.base.NovodaActivityTest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import static com.novoda.canvas.NovodaActivity.RANDOM;
 
@@ -32,8 +31,8 @@ public class AppMasterTest extends NovodaActivityTest {
 
     private List<ResolveInfo> filterList(Context context, List<ResolveInfo> activities) {
         List<ResolveInfo> filteredList = new ArrayList<>();
-        for (ResolveInfo activity: activities) {
-            if (isWhiteListed(context, activity)){
+        for (ResolveInfo activity : activities) {
+            if (isWhiteListed(context, activity)) {
                 filteredList.add(activity);
             }
         }
@@ -49,7 +48,7 @@ public class AppMasterTest extends NovodaActivityTest {
         ActivityInfo randomActivity = activities.get(randomIndex).activityInfo;
         if (noPermissionRequired(randomActivity.permission)) {
             launchIntent.setComponent(new ComponentName(randomActivity.packageName, randomActivity.name));
-            launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            launchIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_ANIMATION);
             activity.startActivity(launchIntent);
             sleepForAWhile();
         }
