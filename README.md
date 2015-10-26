@@ -7,7 +7,7 @@ What is it?
 
 A device wall which constantly polls github for connected android tests! *"tests......."* 
 
-and YOU can add to it!
+and **YOU** can add to it!
 
 [insert fancy example gifs]
 
@@ -35,9 +35,13 @@ How to take part :
 ==
 
 Fork this repo https://github.com/novoda/droidcon-booth
+
 Extend https://github.com/novoda/droidcon-booth/blob/master/mobile/src/androidTest/java/com/novoda/canvas/base/NovodaActivityTest.java
+
 Implement `startTestFor`
+
 ?????
+
 PROFIT
 
 
