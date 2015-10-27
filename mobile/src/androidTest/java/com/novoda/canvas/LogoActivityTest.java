@@ -26,7 +26,7 @@ public class LogoActivityTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
-        ViewGroup parent = getParent(activity);
+        ViewGroup parent = getParent();
         ImageView logo = createNovodaLogo(parent);
 
         Animation pulse = createPulseAnimation();

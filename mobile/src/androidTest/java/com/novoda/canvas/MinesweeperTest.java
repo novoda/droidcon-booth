@@ -23,7 +23,7 @@ public class MinesweeperTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
-        final ViewGroup root = getParent(activity);
+        final ViewGroup root = getParent();
         View view = LayoutInflater.from(activity).inflate(R.layout.main, root, true);
 
         BoardView boardView = (BoardView) view.findViewById(R.id.board);
