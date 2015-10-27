@@ -60,5 +60,9 @@ Make sure you've done at least one of these
 **EZ.**
 
 ***
-You can record your test running via android studio's screen recording and then convert to a gif. We use >
-`ffmpeg -i dank-test.mp4 -vf scale=360:-1 -r 15 dank-test.gif` but there's also a website for it http://ezgif.com/video-to-gif
+You can record your test running via android studio's screen recording and then convert to a gif. We typically use >
+`ffmpeg -i dank-test.mp4 -vf scale=360:-1 -r 15 dank-test.gif` 
+
+[@rock3r](https://github.com/rock3r) uses https://gist.github.com/rock3r/a923a79e8d8a850911aa *;) (default transcoding has horrible color artifacts)*
+
+and there's also a website for it http://ezgif.com/video-to-gif
