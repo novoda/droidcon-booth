@@ -45,7 +45,7 @@ public class DroidconTwitterSearchActivityTest extends NovodaActivityTest {
         tweetView.setGravity(Gravity.CENTER);
         RandomColorFactory randomColorFactory = new RandomColorFactory(RANDOM);
         tweetView.setTextColor(randomColorFactory.getColor());
-        getParent(activity).addView(tweetView);
+        getParent().addView(tweetView);
 
         RandomAnimationFactory randomAnimationFactory = new RandomAnimationFactory(activity.getApplicationContext(), RANDOM);
         new SearchOnTwitter(RANDOM, randomAnimationFactory).execute("%23droidconuk15");

@@ -37,7 +37,7 @@ public class FaceOffActivityTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
-        ViewGroup parent = (ViewGroup) getParent(activity);
+        ViewGroup parent = (ViewGroup) getParent();
         addWords(parent);
 
         colt = makeFace(parent, Player.COLT);

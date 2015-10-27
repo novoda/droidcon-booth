@@ -58,7 +58,7 @@ public class StefanBombTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
-        final ViewGroup root = getParent(activity);
+        final ViewGroup root = getParent();
 
         loadSelfies(activity, root);
     }

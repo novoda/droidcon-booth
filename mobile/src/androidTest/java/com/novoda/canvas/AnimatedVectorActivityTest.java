@@ -48,7 +48,7 @@ public class AnimatedVectorActivityTest extends NovodaActivityTest {
         setBackground(activity, theme);
 
         imageView = createImageView(activity, theme);
-        getParent(activity).addView(imageView);
+        getParent().addView(imageView);
 
         explosionField = ExplosionField.attach2Window(activity);
 
@@ -59,7 +59,7 @@ public class AnimatedVectorActivityTest extends NovodaActivityTest {
     private void setBackground(Activity activity, Theme theme) {
         @ColorInt int color = activity.getResources().getColor(theme.backgroundColorRes);
         ColorDrawable background = new ColorDrawable(color);
-        getParent(activity).setBackground(background);
+        getParent().setBackground(background);
     }
 
     private ImageView createImageView(Context context, Theme theme) {
