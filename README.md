@@ -20,8 +20,7 @@ Rules :
 You can do almost anything *except...*
 
 - Anything **[NSFW](https://en.wikipedia.org/wiki/Not_safe_for_work)**
-- Start intents *undecided 
-- Start broadcasts
+- Start intents that do not target components in this package (Including broadcasts)
 - Take automated pictures
 - Evil things to the test runner or devices
 - Sound (sorry guys, but we have to stand next to it) 
