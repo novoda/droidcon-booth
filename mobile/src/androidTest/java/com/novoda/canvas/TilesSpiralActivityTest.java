@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.GradientDrawable;
+import android.support.annotation.ColorInt;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -27,27 +28,28 @@ public class TilesSpiralActivityTest extends NovodaActivityTest {
     public void startTestFor(Activity activity) {
         ViewGroup parent = getParent(activity);
         availableRect = new Rect(parent.getLeft(), parent.getTop(), parent.getRight(), parent.getBottom());
+        int baseColor = randomColorFactory.getColor();
+        int borderColor = randomColorFactory.lighten(baseColor, -25);
         TileType type = TileType.BOTTOM;
 
         for (int i = 0; i < TILES_COUNT && screenNotFullAlready(); i++) {
-            View tile = createTile(type, activity);
+            int tileColor = randomColorFactory.lighten(baseColor, 5 * i);
+            View tile = createTile(type, tileColor, borderColor, activity);
             parent.addView(tile);
             revealTile(tile);
             type = type.getNext();
         }
-
     }
 
     private boolean screenNotFullAlready() {
         return availableRect.width() > 0 && availableRect.height() > 0;
     }
 
-    private View createTile(TileType type, Context context) {
-        int color = randomColorFactory.getColor();
-
+    private View createTile(TileType type, @ColorInt int tileColor, @ColorInt int strokeColor, Context context) {
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.RECTANGLE);
-        drawable.setColor(color);
+        drawable.setStroke(2, strokeColor);
+        drawable.setColor(tileColor);
 
         int tileTop = type.getTop(availableRect);
         int tileLeft = type.getLeft(availableRect);
@@ -149,7 +151,7 @@ public class TilesSpiralActivityTest extends NovodaActivityTest {
                     availableRect.width(),
                     Math.max(
                             MIN_SIZE,
-                            RANDOM.nextInt(availableRect.width() / 2)
+                            RANDOM.nextInt(availableRect.width() / 3)
                     )
             );
         }
@@ -159,7 +161,7 @@ public class TilesSpiralActivityTest extends NovodaActivityTest {
                     availableRect.height(),
                     Math.max(
                             MIN_SIZE,
-                            RANDOM.nextInt(availableRect.height() / 2)
+                            RANDOM.nextInt(availableRect.height() / 3)
                     )
             );
         }
