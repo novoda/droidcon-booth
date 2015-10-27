@@ -20,6 +20,9 @@ public class TilesSpiralActivityTest extends NovodaActivityTest {
     private static final int TILES_COUNT = 30;
     private static final int MIN_SIZE = 100;
     private static final int FADE_DURATION = 1000;
+    private static final int TILES_LEVEL_BRIGHTNESS_DELTA = 10;
+    private static final int STROKE_COLOR_BRIGHTNESS_DELTA = -25;
+    private static final int DARKER_BASE_COLOR_BRIGHTNESS_DELTA = -40;
 
     private final RandomColorFactory randomColorFactory = new RandomColorFactory(RANDOM);
     private Rect availableRect;
@@ -28,13 +31,13 @@ public class TilesSpiralActivityTest extends NovodaActivityTest {
     public void startTestFor(Activity activity) {
         ViewGroup parent = getParent(activity);
         availableRect = new Rect(parent.getLeft(), parent.getTop(), parent.getRight(), parent.getBottom());
-        int baseColor = randomColorFactory.getColor();
-        int borderColor = randomColorFactory.lighten(baseColor, -25);
+        int baseColor = randomColorFactory.updateBrightness(randomColorFactory.getColor(), DARKER_BASE_COLOR_BRIGHTNESS_DELTA);
+        int strokeColor = randomColorFactory.updateBrightness(baseColor, STROKE_COLOR_BRIGHTNESS_DELTA);
         TileType type = TileType.BOTTOM;
 
         for (int i = 0; i < TILES_COUNT && screenNotFullAlready(); i++) {
-            int tileColor = randomColorFactory.lighten(baseColor, 5 * i);
-            View tile = createTile(type, tileColor, borderColor, activity);
+            int tileColor = randomColorFactory.updateBrightness(baseColor, TILES_LEVEL_BRIGHTNESS_DELTA * i);
+            View tile = createTile(type, tileColor, strokeColor, activity);
             parent.addView(tile);
             revealTile(tile);
             type = type.getNext();
