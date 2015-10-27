@@ -19,7 +19,7 @@ public class TilesSpiralActivityTest extends NovodaActivityTest {
 
     private static final int TILES_COUNT = 30;
     private static final int MIN_SIZE = 100;
-    private static final int FADE_DURATION = 1000;
+    private static final int FADE_DURATION = 300;
     private static final int TILES_LEVEL_BRIGHTNESS_DELTA = 10;
     private static final int STROKE_COLOR_BRIGHTNESS_DELTA = -25;
     private static final int DARKER_BASE_COLOR_BRIGHTNESS_DELTA = -40;
@@ -39,7 +39,7 @@ public class TilesSpiralActivityTest extends NovodaActivityTest {
             int tileColor = randomColorFactory.updateBrightness(baseColor, TILES_LEVEL_BRIGHTNESS_DELTA * i);
             View tile = createTile(type, tileColor, strokeColor, activity);
             parent.addView(tile);
-            revealTile(tile);
+            revealTile(tile, FADE_DURATION * i);
             type = type.getNext();
         }
     }
@@ -70,15 +70,17 @@ public class TilesSpiralActivityTest extends NovodaActivityTest {
 
         square.setY(tileTop);
         square.setX(tileLeft);
+        square.setAlpha(0f);
 
         type.updateAvailableSpace(availableRect, tileLeft, tileTop, tileRight, tileBottom);
 
         return square;
     }
 
-    private void revealTile(View square) {
+    private void revealTile(View square, int delay) {
         ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(square, "alpha", 0f, 1f);
         alphaAnimator.setDuration(FADE_DURATION);
+        alphaAnimator.setStartDelay(delay);
         alphaAnimator.start();
     }
 
