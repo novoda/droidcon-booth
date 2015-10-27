@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ParallaxActivityTest extends NovodaActivityTest {
 
-    private static final int SQUARES_COUNT = 10;
+    private static final int SQUARES_COUNT = 40;
     private static final int DURATION_MS = 20000;
 
     @Override
