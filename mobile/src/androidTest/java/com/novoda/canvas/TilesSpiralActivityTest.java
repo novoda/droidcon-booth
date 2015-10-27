@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.novoda.canvas.base.ColorEditor;
 import com.novoda.canvas.base.NovodaActivityTest;
 import com.novoda.canvas.base.RandomColorFactory;
 
@@ -20,23 +21,24 @@ public class TilesSpiralActivityTest extends NovodaActivityTest {
     private static final int TILES_COUNT = 30;
     private static final int MIN_SIZE = 100;
     private static final int FADE_DURATION = 300;
-    private static final int TILES_LEVEL_BRIGHTNESS_DELTA = 10;
-    private static final int STROKE_COLOR_BRIGHTNESS_DELTA = -25;
-    private static final int DARKER_BASE_COLOR_BRIGHTNESS_DELTA = -40;
+    private static final int TILES_LEVEL_LIGHTEN_DELTA = 10;
+    private static final int STROKE_COLOR_DARKEN_DELTA = 25;
+    private static final int DARKER_BASE_COLOR_DARKEN_DELTA = 40;
 
     private final RandomColorFactory randomColorFactory = new RandomColorFactory(RANDOM);
+    private final ColorEditor colorEditor = new ColorEditor();
     private Rect availableRect;
 
     @Override
     public void startTestFor(Activity activity) {
         ViewGroup parent = getParent(activity);
         availableRect = new Rect(parent.getLeft(), parent.getTop(), parent.getRight(), parent.getBottom());
-        int baseColor = randomColorFactory.updateBrightness(randomColorFactory.getColor(), DARKER_BASE_COLOR_BRIGHTNESS_DELTA);
-        int strokeColor = randomColorFactory.updateBrightness(baseColor, STROKE_COLOR_BRIGHTNESS_DELTA);
+        int baseColor = colorEditor.darken(randomColorFactory.getColor(), DARKER_BASE_COLOR_DARKEN_DELTA);
+        int strokeColor = colorEditor.darken(baseColor, STROKE_COLOR_DARKEN_DELTA);
         TileType type = TileType.BOTTOM;
 
         for (int i = 0; i < TILES_COUNT && screenNotFullAlready(); i++) {
-            int tileColor = randomColorFactory.updateBrightness(baseColor, TILES_LEVEL_BRIGHTNESS_DELTA * i);
+            int tileColor = colorEditor.lighten(baseColor, TILES_LEVEL_LIGHTEN_DELTA * i);
             View tile = createTile(type, tileColor, strokeColor, activity);
             parent.addView(tile);
             revealTile(tile, FADE_DURATION * i);
