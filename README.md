@@ -26,6 +26,7 @@ You can do almost anything *except...*
 - Evil things to the test runner or devices
 - Sound (sorry guys, but we have to stand next to it) 
 - Touch other peoples tests, cmon we're all buds!
+- Write a failing test, no exceptions, force closes, major main thread blocking (a little bit is ok)
 
 Stuff to try and avoid
 - Touching the production source code. We would prefer you hacked around limitations with reflection. Adding resources to the main source set is fine though.
