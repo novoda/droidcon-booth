@@ -1,20 +1,22 @@
-package com.novoda.canvas.drawingmachine;
+package com.novoda.canvas.drawingmachine.noise;
 
 import android.app.Activity;
 
 import com.novoda.canvas.base.NovodaActivityTest;
+import com.novoda.canvas.drawingmachine.DrawingMachine;
+import com.novoda.canvas.drawingmachine.ScreenUpdatingEngine;
 
 import org.junit.After;
 import org.junit.Before;
 
-public class DrawingMachineActivityTest extends NovodaActivityTest {
+public class NoiseActivityTest extends NovodaActivityTest {
 
     private DrawingMachine drawingMachine;
 
     @Before
     public void welcomeToTheDrawingMachine() {
         drawingMachine = new DrawingMachine();
-        drawingMachine.registerEngine(SpiralPaintingEngine.newInstance());
+        drawingMachine.registerEngine(NoisePaintingEngine.newInstance());
         drawingMachine.registerEngine(new ScreenUpdatingEngine());
     }
 

@@ -1,19 +1,22 @@
-package com.novoda.canvas.drawingmachine;
+package com.novoda.canvas.drawingmachine.noise;
 
 import android.graphics.Canvas;
 
-class SpiralPaintingEngine extends BaseEngine {
+import com.novoda.canvas.drawingmachine.BaseEngine;
+import com.novoda.canvas.drawingmachine.DrawingMachineView;
 
-    private static final long PERIOD_PAINT_MILLIS = 1;
+class NoisePaintingEngine extends BaseEngine {
+
+    private static final long PERIOD_PAINT_MILLIS = 17;
 
     private DrawingMachineView drawingMachineView;
-    private final SpiralPainter painter;
+    private final NoisePainter painter;
 
-    public static SpiralPaintingEngine newInstance() {
-        return new SpiralPaintingEngine(SpiralPainter.newInstance());
+    public static NoisePaintingEngine newInstance() {
+        return new NoisePaintingEngine(NoisePainter.newInstance());
     }
 
-    private SpiralPaintingEngine(SpiralPainter painter) {
+    private NoisePaintingEngine(NoisePainter painter) {
         super(PERIOD_PAINT_MILLIS);
         this.painter = painter;
     }
@@ -32,7 +35,7 @@ class SpiralPaintingEngine extends BaseEngine {
         @Override
         public void run() {
             Canvas canvas = drawingMachineView.getCanvas();
-            painter.paintLinesOn(canvas);
+            painter.paintNoiseOn(canvas);
         }
     };
 }
