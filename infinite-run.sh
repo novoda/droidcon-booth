@@ -1,6 +1,7 @@
-#! /bin/bash
+#!/bin/bash
+set -e
 
- while true; do
+while true; do
 
  git rev-parse --is-inside-work-tree
  git config remote.origin.url git@github.com:novoda/droidcon-booth.git 
