@@ -10,4 +10,5 @@
  git checkout -f master
 
  ./gradlew connectedAndroidTest
+
 done
