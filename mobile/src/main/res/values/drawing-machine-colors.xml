@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="novoda_yellow">#FBA400</color>
-  <color name="novoda_blue">#18A2DD</color>
+  <color name="dark_gray">#2B2B2B</color>
+  <color name="vibrant_red">#D31A3B</color>
 </resources>

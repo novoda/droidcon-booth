@@ -19,10 +19,10 @@ public class DrawingMachineActivityTest extends NovodaActivityTest {
 
         drawingMachine.registerEngine(new ScreenUpdatingEngine());
         drawingMachine.registerEngine(
-                createSpiralEngine(getColor(R.color.novoda_yellow), 2)
+                createSpiralEngine(getColor(R.color.dark_gray), 2)
         );
         drawingMachine.registerEngine(
-                createSpiralEngine(getColor(R.color.novoda_blue), 4)
+                createSpiralEngine(getColor(R.color.vibrant_red), 4)
         );
     }
 
