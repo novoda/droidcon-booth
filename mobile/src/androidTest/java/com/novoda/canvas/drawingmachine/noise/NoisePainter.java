@@ -9,7 +9,7 @@ class NoisePainter {
 
     private final SimplexNoise simplexNoise;
     private final Paint eraserPaint, circlePaint;
-    private final static int MAX_CIRCLE_RADIUS = 15;
+    private final static int MAX_CIRCLE_RADIUS = 20;
     private final static int MAX_SHAPES = 20;
     private double time = 0;
 
