@@ -4,7 +4,7 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 
-public class SimpleSoundMeter {
+public class SimpleSoundMeter implements SoundDataProvider {
 
     private static final int SAMPLE_RATE = 44100;
 
@@ -54,10 +54,12 @@ public class SimpleSoundMeter {
         mean = sum / minBufferSize;
     }
 
+    @Override
     public int getAmplitude() {
         return amplitude;
     }
 
+    @Override
     public int getMean() {
         return mean;
     }
