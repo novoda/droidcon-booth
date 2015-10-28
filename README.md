@@ -23,7 +23,7 @@ You can do almost anything *except...*
 - Start intents that do not target components in this package (Including broadcasts)
 - Take automated pictures
 - Evil things to the test runner or devices
-- Sound (sorry guys, but we have to stand next to it) 
+- Sound
 - Touch other peoples tests, cmon we're all buds!
 - Write a failing test, no exceptions, force closes, major main thread blocking (a little bit is ok)
 
