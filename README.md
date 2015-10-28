@@ -5,10 +5,13 @@ droidcon-booth
 What is it?
 ==
 
-A device wall which constantly polls github for connected android tests! *"tests......."* 
+A device wall which constantly polls github for connected android tests!
 
-and **YOU** can add to it!
+Actually we're not really writing tests here, you caught us! We're using the test runner to call our test suite composed of many **lightning demos** running for 10 seconds each...
 
+and **YOU** can add to it! We want **YOU** to add your creative ideas as another lightning demo and showcase them at our booth.
+
+Here are some of our ideas...
 
 [Logo](https://github.com/novoda/droidcon-booth/pull/18) | [#enumsmatter](https://github.com/novoda/droidcon-booth/pull/5)
 | --- | ---
@@ -33,6 +36,7 @@ Stuff to try and avoid
 
 if you're not sure, do it anyways! 
 
+You can always have a look at the [merged pull requests](https://github.com/novoda/droidcon-booth/pulls?q=is%3Apr+is%3Aclosed).
 
 How to take part :
 ==
