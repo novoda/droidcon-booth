@@ -14,8 +14,6 @@ import com.novoda.canvas.base.NovodaActivityTest;
 
 public class CitiesTest extends NovodaActivityTest {
 
-    private static final int CITY_CHANGE_INTERVAL = 2000;
-
     private static int[] CITIES = {
             R.drawable.london,
             R.drawable.berlin,
@@ -31,6 +29,8 @@ public class CitiesTest extends NovodaActivityTest {
             "LIVERPOOL",
             "NEW YORK"
     };
+
+    private static final int CITY_CHANGE_INTERVAL = (TIME_LIMIT_FOR_TEST_IN_SECONDS / CITIES.length) * 1000;
 
     @Override
     public void startTestFor(Activity activity) {
