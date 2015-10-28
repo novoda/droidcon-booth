@@ -42,14 +42,14 @@ public class AnrHistoryActivityTest extends NovodaActivityTest {
                     new Runnable() {
                         @Override
                         public void run() {
-                            fakeAnr.setImageResource(getRandomSelfie());
+                            fakeAnr.setImageResource(makeItBreak());
                         }
                     }, i * ANR_INTERVAL
             );
         }
     }
 
-    private int getRandomSelfie() {
+    private int makeItBreak() {
         return ANR[randomPick()];
     }
 
