@@ -75,7 +75,7 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
             }
             charView.setX(xPosition);
             charView.setY(y * (FONT_SIZE / 2));
-            charView.setTextColor(Color.rgb(0, 255 - (y * 2), 0));
+            charView.setTextColor(Color.rgb(0, Math.max(255 - (y * 2), 10), 0));
             createNextRainDropView();
         }
     }
