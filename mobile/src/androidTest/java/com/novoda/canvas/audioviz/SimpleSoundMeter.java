@@ -4,7 +4,7 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 
-public class SimpleSoundMeter implements SoundDataProvider {
+public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider {
 
     private static final int SAMPLE_RATE = 44100;
 
