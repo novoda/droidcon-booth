@@ -13,13 +13,13 @@ public class AmplitudeView extends View {
     Paint fgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     Path path = new Path();
 
-    SimpleSoundMeter soundMeter;
+    SoundDataProvider soundDataProvider;
 
-    public AmplitudeView(Context context, SimpleSoundMeter soundMeter) {
+    public AmplitudeView(Context context, SoundDataProvider soundDataProvider) {
         super(context);
         bgPaint.setColor(Color.RED);
         fgPaint.setColor(Color.GREEN);
-        this.soundMeter = soundMeter;
+        this.soundDataProvider = soundDataProvider;
     }
 
     @Override
@@ -29,11 +29,11 @@ public class AmplitudeView extends View {
 
         int width = canvas.getWidth();
         int height = canvas.getHeight();
-        int amplitude = soundMeter.getAmplitude();
+        int amplitude = soundDataProvider.getAmplitude();
 
         path.reset();
-        path.moveTo(width / 5, soundMeter.getMean() * height / amplitude);
-        path.lineTo(width - width / 5, soundMeter.getMean() * height / amplitude);
+        path.moveTo(width / 5, soundDataProvider.getMean() * height / amplitude);
+        path.lineTo(width - width / 5, soundDataProvider.getMean() * height / amplitude);
         path.lineTo(width - width / 5, amplitude);
         path.lineTo(width / 5, amplitude);
         path.close();
