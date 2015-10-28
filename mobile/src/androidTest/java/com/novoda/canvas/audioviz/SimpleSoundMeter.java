@@ -19,25 +19,24 @@ public class SimpleSoundMeter {
                 AudioFormat.CHANNEL_IN_MONO,
                 AudioFormat.ENCODING_PCM_16BIT
         );
-
-        audioRecord = new AudioRecord(
-                MediaRecorder.AudioSource.MIC,
-                SAMPLE_RATE,
-                AudioFormat.CHANNEL_IN_MONO,
-                AudioFormat.ENCODING_PCM_16BIT,
-                minBufferSize
-        );
     }
 
     public void start() {
-        // check if null
-        audioRecord.startRecording();
+        if (audioRecord == null) {
+            audioRecord = new AudioRecord(
+                    MediaRecorder.AudioSource.MIC,
+                    SAMPLE_RATE,
+                    AudioFormat.CHANNEL_IN_MONO,
+                    AudioFormat.ENCODING_PCM_16BIT,
+                    minBufferSize
+            );
+        } else {
+            audioRecord.startRecording();
+        }
     }
 
     public void stop() {
-        if (audioRecord != null) {
-            audioRecord.stop();
-        }
+        audioRecord.stop();
     }
 
     public void read() {
