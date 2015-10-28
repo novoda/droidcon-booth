@@ -1,15 +1,17 @@
-package com.novoda.canvas.drawingmachine;
+package com.novoda.canvas.drawingmachine.spiral;
 
 import android.app.Activity;
 import android.support.annotation.ColorInt;
 
 import com.novoda.canvas.R;
 import com.novoda.canvas.base.NovodaActivityTest;
+import com.novoda.canvas.drawingmachine.DrawingMachine;
+import com.novoda.canvas.drawingmachine.ScreenUpdatingEngine;
 
 import org.junit.After;
 import org.junit.Before;
 
-public class DrawingMachineActivityTest extends NovodaActivityTest {
+public class SpiralActivityTest extends NovodaActivityTest {
 
     private DrawingMachine drawingMachine;
 

@@ -4,7 +4,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-abstract class BaseEngine implements Engine {
+public abstract class BaseEngine implements Engine {
 
     private final long periodInMillis;
 

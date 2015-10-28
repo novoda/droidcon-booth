@@ -8,7 +8,7 @@ import android.support.annotation.ColorInt;
 import android.view.TextureView;
 import android.view.ViewGroup;
 
-class DrawingMachineView extends TextureView {
+public class DrawingMachineView extends TextureView {
 
     private static final int MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT;
 

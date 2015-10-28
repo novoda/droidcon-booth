@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-class DrawingMachine {
+public class DrawingMachine {
 
     private final List<Engine> engines = new ArrayList<>();
 
@@ -55,7 +55,7 @@ class DrawingMachine {
         }
     }
 
-    void stop() {
+    public void stop() {
         for (Engine engine : engines) {
             engine.stop();
         }
