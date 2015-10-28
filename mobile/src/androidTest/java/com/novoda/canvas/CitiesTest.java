@@ -2,6 +2,7 @@ package com.novoda.canvas;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -40,19 +41,10 @@ public class CitiesTest extends NovodaActivityTest {
 
     private void loadCities(Activity activity, final ViewGroup root) {
 
-        final ImageView cityImageView = new ImageView(activity);
-        cityImageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        cityImageView.setAdjustViewBounds(true);
-        cityImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        final ImageView cityImageView = createCityImageView(activity);
         root.addView(cityImageView);
 
-        final TextView cityTextView = new TextView(activity);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        params.setMargins(0, 20, 0, 20);
-        cityTextView.setLayoutParams(params);
-        cityTextView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP);
-        cityTextView.setTextColor(Color.WHITE);
-        cityTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 48);
+        final TextView cityTextView = createCityNameView(activity);
         root.addView(cityTextView);
 
         for (int i = 0; i < CITIES.length; i++) {
@@ -66,6 +58,27 @@ public class CitiesTest extends NovodaActivityTest {
                 }
             }, i * CITY_CHANGE_INTERVAL);
         }
+    }
+
+    @NonNull
+    private ImageView createCityImageView(final Activity activity) {
+        final ImageView cityImageView = new ImageView(activity);
+        cityImageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        cityImageView.setAdjustViewBounds(true);
+        cityImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        return cityImageView;
+    }
+
+    @NonNull
+    private TextView createCityNameView(final Activity activity) {
+        final TextView cityTextView = new TextView(activity);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        params.setMargins(0, 20, 0, 20);
+        cityTextView.setLayoutParams(params);
+        cityTextView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP);
+        cityTextView.setTextColor(Color.WHITE);
+        cityTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 48);
+        return cityTextView;
     }
 
 }
