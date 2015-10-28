@@ -2,7 +2,7 @@ package com.novoda.canvas.drawingmachine;
 
 import android.graphics.Canvas;
 
-class ScreenUpdatingEngine extends BaseEngine {
+public class ScreenUpdatingEngine extends BaseEngine {
 
     private static final long PERIOD_UPDATE_MILLIS = 17; //60 FPS
 

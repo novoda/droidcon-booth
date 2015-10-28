@@ -1,4 +1,4 @@
-package com.novoda.canvas.drawingmachine;
+package com.novoda.canvas.drawingmachine.spiral;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

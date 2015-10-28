@@ -23,7 +23,7 @@ public class SuperStarActivityTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(final Activity activity) {
-        final View parent = getParent(activity);
+        final View parent = getParent();
         parent.setBackgroundColor(activity.getResources().getColor(android.R.color.black));
 
         for (int batchIndex = 0; batchIndex < 20; batchIndex++) {

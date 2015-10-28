@@ -31,7 +31,7 @@ public class TilesSpiralActivityTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
-        ViewGroup parent = getParent(activity);
+        ViewGroup parent = getParent();
         availableRect = new Rect(parent.getLeft(), parent.getTop(), parent.getRight(), parent.getBottom());
         int baseColor = colorEditor.darken(randomColorFactory.getColor(), DARKER_BASE_COLOR_DARKEN_DELTA);
         int strokeColor = colorEditor.darken(baseColor, STROKE_COLOR_DARKEN_DELTA);

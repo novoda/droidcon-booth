@@ -21,7 +21,7 @@ public class ParallaxActivityTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
-        View parent = getParent(activity);
+        View parent = getParent();
 
         List<View> smallSquares = createSquares(activity, true, parent);
         List<View> bigSquares = createSquares(activity, false, parent);

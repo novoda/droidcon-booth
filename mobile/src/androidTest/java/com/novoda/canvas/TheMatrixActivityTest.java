@@ -22,7 +22,7 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
-        parent = getParent(activity);
+        parent = getParent();
         parent.setBackgroundColor(getColor(R.color.matrix_background));
         drawOneColumnAtATime = RANDOM.nextBoolean();
         createNextRainDropView();
@@ -75,7 +75,7 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
             }
             charView.setX(xPosition);
             charView.setY(y * (FONT_SIZE / 2));
-            charView.setTextColor(Color.rgb(0, 255 - (y * 2), 0));
+            charView.setTextColor(Color.rgb(0, Math.max(255 - (y * 2), 10), 0));
             createNextRainDropView();
         }
     }
