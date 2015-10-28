@@ -45,7 +45,7 @@ public abstract class NovodaActivityTest {
 
     public abstract void startTestFor(Activity activity);
 
-    protected ViewGroup getParent(Activity activity) {
+    protected ViewGroup getParent() {
         return (ViewGroup) activity.findViewById(android.R.id.content);
     }
 

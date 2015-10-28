@@ -22,7 +22,7 @@ public class TheMatrixActivityTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
-        parent = getParent(activity);
+        parent = getParent();
         parent.setBackgroundColor(getColor(R.color.matrix_background));
         drawOneColumnAtATime = RANDOM.nextBoolean();
         createNextRainDropView();

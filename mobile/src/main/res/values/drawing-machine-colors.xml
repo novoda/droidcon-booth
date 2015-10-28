@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="beige">#FEFAE0</color>
+  <color name="dark_gray">#2B2B2B</color>
+  <color name="vibrant_red">#D31A3B</color>
 </resources>
