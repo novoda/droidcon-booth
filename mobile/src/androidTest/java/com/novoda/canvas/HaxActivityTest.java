@@ -3,6 +3,7 @@ package com.novoda.canvas;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ public class HaxActivityTest extends NovodaActivityTest {
         codeTextView = new TextView(activity);
         codeTextView.setLayoutParams(new ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT));
         codeTextView.setTextColor(Color.BLACK);
+        codeTextView.setTypeface(Typeface.MONOSPACE);
         parent.addView(codeTextView);
 
         codeClass = getCodeClass(NovodaActivity.RANDOM);
