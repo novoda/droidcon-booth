@@ -19,7 +19,6 @@ public class CitiesTest extends NovodaActivityTest {
             R.drawable.berlin,
             R.drawable.barcelona,
             R.drawable.liverpool,
-            R.drawable.brussels,
             R.drawable.new_york
     };
 
@@ -28,7 +27,6 @@ public class CitiesTest extends NovodaActivityTest {
             "BERLIN",
             "BARCELONA",
             "LIVERPOOL",
-            "BRUSSELS",
             "NEW YORK"
     };
 
