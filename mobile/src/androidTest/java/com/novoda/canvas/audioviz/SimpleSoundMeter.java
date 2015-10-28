@@ -21,6 +21,7 @@ public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider {
         );
     }
 
+    @Override
     public void start() {
         if (audioRecord == null) {
             audioRecord = new AudioRecord(
@@ -35,10 +36,12 @@ public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider {
         }
     }
 
+    @Override
     public void stop() {
         audioRecord.stop();
     }
 
+    @Override
     public void read() {
         int sum = 0;
         short[] buffer = new short[minBufferSize];
