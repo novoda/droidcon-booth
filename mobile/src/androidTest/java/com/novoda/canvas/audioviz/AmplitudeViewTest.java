@@ -7,7 +7,7 @@ import com.novoda.canvas.base.NovodaActivityTest;
 
 import org.junit.After;
 
-public class AudioVizTest extends NovodaActivityTest {
+public class AmplitudeViewTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
