@@ -82,8 +82,6 @@ public class BounceTest extends NovodaActivityTest {
             object.setX(RANDOM.nextInt(parent.getWidth()));
             object.setY(parent.getHeight());
             objects.add(object);
-
-            object.setX(RANDOM.nextInt(parent.getWidth()));
         }
         return objects;
     }
