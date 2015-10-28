@@ -29,7 +29,6 @@ import static com.novoda.canvas.NovodaActivity.RANDOM;
 public class BounceTest extends NovodaActivityTest {
 
     private static final int MAX_BALL_SIZE = 100;
-    private static final int BATCH_SIZE = 25;
     private static final int BACKGROUND_COLOR = R.color.bounce_background;
     private static final int[] COLOR_VARIANTS = {
             R.color.bounce_yellow,
@@ -48,7 +47,7 @@ public class BounceTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(final Activity activity) {
-        final ViewGroup parent = getParent(activity);
+        final ViewGroup parent = getParent();
         parent.setBackgroundColor(activity.getResources().getColor(BACKGROUND_COLOR));
         for (int batchIndex = 0; batchIndex < 20; batchIndex++) {
             final int finalBatchIndex = batchIndex * 2;
