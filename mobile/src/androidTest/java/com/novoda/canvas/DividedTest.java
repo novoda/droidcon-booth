@@ -19,10 +19,10 @@ public class DividedTest extends NovodaActivityTest {
 
         View view = LayoutInflater.from(activity).inflate(R.layout.divided_cards, root, true);
         flippableCardCenter = (FlippableCard) view.findViewById(R.id.flippable_card_center);
-        loadQuestions(activity, root);
+        loadQuestions(activity);
     }
 
-    private void loadQuestions(Activity activity, final ViewGroup root) {
+    private void loadQuestions(Activity activity) {
         flippableCardCenter.update(getRandomQuestion());
     }
 
