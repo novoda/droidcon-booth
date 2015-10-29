@@ -4,7 +4,7 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 
-public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider {
+public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider, Tickable {
 
     private static final int SAMPLE_RATE = 44100;
 
@@ -65,5 +65,10 @@ public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider {
     @Override
     public int getMean() {
         return mean;
+    }
+
+    @Override
+    public void tick() {
+        read();
     }
 }
