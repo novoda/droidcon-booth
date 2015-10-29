@@ -4,10 +4,15 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+
 public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider, Tickable {
 
     private static final int SAMPLE_RATE = 44100;
+    public static final int CORE_POOL_SIZE = 4;
 
+    private Executor readExecutor = new ScheduledThreadPoolExecutor(CORE_POOL_SIZE);
     private AudioRecord audioRecord = null;
     private final int minBufferSize;
     private int amplitude = 0;
@@ -33,7 +38,9 @@ public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider, 
             );
         }
 
-        audioRecord.startRecording();
+        if (audioRecord.getState() == AudioRecord.STATE_INITIALIZED) {
+            audioRecord.startRecording();
+        }
     }
 
     @Override
@@ -43,10 +50,23 @@ public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider, 
 
     @Override
     public void read() {
+        readExecutor.execute(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        blockingRead();
+                    }
+                }
+        );
+    }
 
+    private void blockingRead() {
         int sum = 0;
         short[] buffer = new short[minBufferSize];
-        audioRecord.read(buffer, 0, minBufferSize);
+
+        if (audioRecord.getState() == AudioRecord.STATE_INITIALIZED) {
+            audioRecord.read(buffer, 0, minBufferSize);
+        }
 
         for (short sample : buffer) {
             sum += sample;
