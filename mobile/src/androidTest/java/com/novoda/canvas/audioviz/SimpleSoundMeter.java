@@ -3,6 +3,7 @@ package com.novoda.canvas.audioviz;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
+import android.util.Log;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -12,23 +13,47 @@ public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider, 
     private static final int SAMPLE_RATE = 44100;
     public static final int CORE_POOL_SIZE = 4;
 
-    private Executor readExecutor = new ScheduledThreadPoolExecutor(CORE_POOL_SIZE);
+    private Executor readExecutor;
     private AudioRecord audioRecord = null;
     private final int minBufferSize;
     private int amplitude = 0;
     private int mean = 0;
 
     public SimpleSoundMeter() {
-        minBufferSize = AudioRecord.getMinBufferSize(
-                SAMPLE_RATE,
-                AudioFormat.CHANNEL_IN_MONO,
-                AudioFormat.ENCODING_PCM_16BIT
+        this(new ScheduledThreadPoolExecutor(CORE_POOL_SIZE));
+    }
+
+    public SimpleSoundMeter(Executor readExecutor) {
+        this(
+                readExecutor,
+                AudioRecord.getMinBufferSize(
+                        SAMPLE_RATE,
+                        AudioFormat.CHANNEL_IN_MONO,
+                        AudioFormat.ENCODING_PCM_16BIT
+                )
         );
+    }
+
+    private SimpleSoundMeter(Executor readExecutor, int minBufferSize) {
+        this.minBufferSize = minBufferSize;
+        this.readExecutor = readExecutor;
     }
 
     @Override
     public void start() {
         if (audioRecord == null) {
+            init();
+        }
+
+        try {
+            audioRecord.startRecording();
+        } catch (IllegalStateException e) {
+            Log.e(SimpleSoundMeter.class.getSimpleName(), "Could not start: " + e.getMessage());
+        }
+    }
+
+    private void init() {
+        try {
             audioRecord = new AudioRecord(
                     MediaRecorder.AudioSource.MIC,
                     SAMPLE_RATE,
@@ -36,10 +61,8 @@ public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider, 
                     AudioFormat.ENCODING_PCM_16BIT,
                     minBufferSize
             );
-        }
-
-        if (audioRecord.getState() == AudioRecord.STATE_INITIALIZED) {
-            audioRecord.startRecording();
+        } catch (IllegalArgumentException e) {
+            Log.e(SimpleSoundMeter.class.getSimpleName(), "Could not start: " + e.getMessage());
         }
     }
 
