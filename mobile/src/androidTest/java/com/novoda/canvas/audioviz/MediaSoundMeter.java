@@ -1,6 +1,7 @@
 package com.novoda.canvas.audioviz;
 
 import android.media.MediaRecorder;
+import android.util.Log;
 
 import java.io.IOException;
 
@@ -32,7 +33,7 @@ public class MediaSoundMeter implements SoundDataRetriever, SoundDataProvider, T
                 mediaRecorder.prepare();
                 mediaRecorder.start();
             } catch (IllegalStateException | IOException e) {
-                L.d(this, "start() failed: " + e.getMessage());
+                Log.e(MediaSoundMeter.class.getSimpleName(), "start() failed: " + e.getMessage());
             }
         }
     }
