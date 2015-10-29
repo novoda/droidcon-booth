@@ -14,7 +14,7 @@ public class L {
         d(o.getClass().getSimpleName(), m.toString());
     }
 
-    public static void t(final Object o, final Object m) {
+    public static void ui(final Object o, final Object m) {
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(
                 new Runnable() {
