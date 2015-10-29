@@ -7,7 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.View;
 
-class SoundView extends View implements Tickable {
+class MeanSoundView extends View implements Tickable {
 
     private static final int WIDTH_DIVIDER = 5;
 
@@ -18,7 +18,7 @@ class SoundView extends View implements Tickable {
     private SoundDataProvider soundDataProvider;
     private Normalizer normalizer = new Normalizer();
 
-    public SoundView(Context context, SoundDataProvider soundDataProvider) {
+    public MeanSoundView(Context context, SoundDataProvider soundDataProvider) {
         super(context);
         this.soundDataProvider = soundDataProvider;
 
