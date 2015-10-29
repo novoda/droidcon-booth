@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface Ticker {
 
-    void tick(); // TODO FIXME maybe remove this
+    void tick(); // TODO FIXME maybe remove this as the ticker should tick on its own
 
     void start();
 
@@ -21,7 +21,7 @@ public interface Ticker {
 
     class TickerImpl implements Ticker {
 
-        public static final int DEFAULT_INTERVAL = 100; // ms
+        public static final int DEFAULT_INTERVAL = 50; // ms
 
         int interval;
         Handler handler;

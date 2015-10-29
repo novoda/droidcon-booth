@@ -20,6 +20,9 @@ public class SoundViewTest extends NovodaActivityTest {
         soundDataRetriever = simpleSoundMeter;
         soundDataProvider = simpleSoundMeter;
         ticker = new Ticker.TickerImpl();
+
+        soundDataRetriever.start();
+        ticker.start();
     }
 
     /*@Test
@@ -34,9 +37,6 @@ public class SoundViewTest extends NovodaActivityTest {
 
         final ViewGroup parent = getParent();
         final Context context = parent.getContext();
-
-        soundDataRetriever.start();
-        ticker.start();
 
         SoundView soundView = new SoundView(context, soundDataProvider);
         parent.addView(soundView);

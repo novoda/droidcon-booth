@@ -9,14 +9,14 @@ import android.view.View;
 
 class SoundView extends View implements Tickable {
 
+    private static final int WIDTH_DIVIDER = 5;
+
     private Paint backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint foregroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Path path = new Path();
 
     private SoundDataProvider soundDataProvider;
-    private Normaliser normaliser = new Normaliser();
-
-    private int amplitude;
+    private Normalizer normalizer = new Normalizer();
 
     public SoundView(Context context, SoundDataProvider soundDataProvider) {
         super(context);
@@ -31,7 +31,7 @@ class SoundView extends View implements Tickable {
         super.onLayout(changed, left, top, right, bottom);
 
         if (changed) {
-            normaliser.height = bottom;
+            normalizer.height = bottom;
         }
     }
 
@@ -42,25 +42,19 @@ class SoundView extends View implements Tickable {
 
         int width = canvas.getWidth();
         int height = canvas.getHeight();
-        int newAmplitude = soundDataProvider.getAmplitude();
+        int dividedWidth = width / WIDTH_DIVIDER;
+        int value = soundDataProvider.getMean();
 
-        normaliser.setMaxAmplitude(newAmplitude);
-        amplitude = normaliser.normalise(newAmplitude);
+        int normalizedValue = normalizer.normalise(value);
 
-        L.ui(this, newAmplitude);
-        L.ui(this, amplitude);
+        path.reset();
+        path.moveTo(dividedWidth, normalizedValue);
+        path.lineTo(width - dividedWidth, normalizedValue);
+        path.lineTo(width - dividedWidth, height);
+        path.lineTo(dividedWidth, height);
+        path.close();
 
-        if (amplitude != 0) {
-
-            path.reset();
-            path.moveTo(width / 5, 0);
-            path.lineTo(width - width / 5, 0);
-            path.lineTo(width - width / 5, amplitude);
-            path.lineTo(width / 5, amplitude);
-            path.close();
-
-            canvas.drawPath(path, foregroundPaint);
-        }
+        canvas.drawPath(path, foregroundPaint);
 
         super.onDraw(canvas);
     }
@@ -70,19 +64,20 @@ class SoundView extends View implements Tickable {
         invalidate();
     }
 
-    private static class Normaliser {
+    private static class Normalizer {
 
-        int maxAmplitude;
         int height;
+        private int maxValue;
 
-        public void setMaxAmplitude(int value) {
-            if (value > maxAmplitude) {
-                maxAmplitude = value;
+        private void setMaxValue(int value) {
+            if (value > maxValue) {
+                maxValue = value;
             }
         }
 
         public int normalise(int value) {
-            return maxAmplitude != 0 ? value * height * (1 / maxAmplitude) : 0;
+            setMaxValue(value);
+            return maxValue != 0 ? (int) (value * height * (1 / (float) maxValue)) : 0;
         }
     }
 }

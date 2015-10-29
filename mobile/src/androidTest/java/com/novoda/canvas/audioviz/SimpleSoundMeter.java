@@ -55,8 +55,6 @@ public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider, 
             }
         }
 
-        L.ui(this, "amplitude = " +amplitude);
-
         mean = sum / minBufferSize;
     }
 
@@ -67,7 +65,7 @@ public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider, 
 
     @Override
     public int getMean() {
-        return mean;
+        return Math.abs(mean);
     }
 
     @Override
