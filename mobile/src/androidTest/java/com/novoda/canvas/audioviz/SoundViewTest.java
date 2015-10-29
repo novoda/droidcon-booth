@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 
 import com.novoda.canvas.base.NovodaActivityTest;
 
-public class AmplitudeViewTest extends NovodaActivityTest {
+public class SoundViewTest extends NovodaActivityTest {
 
     private SimpleSoundMeter simpleSoundMeter;
     private SoundDataRetriever soundDataRetriever;
@@ -38,11 +38,11 @@ public class AmplitudeViewTest extends NovodaActivityTest {
         soundDataRetriever.start();
         ticker.start();
 
-        AmplitudeView amplitudeView = new AmplitudeView(context, soundDataProvider);
-        parent.addView(amplitudeView);
+        SoundView soundView = new SoundView(context, soundDataProvider);
+        parent.addView(soundView);
 
         ticker.addTickable(simpleSoundMeter);
-        ticker.addTickable(amplitudeView);
+        ticker.addTickable(soundView);
     }
 
 //    @After
