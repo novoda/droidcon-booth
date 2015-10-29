@@ -11,7 +11,7 @@ public class L {
     }
 
     public static void d(Object o, Object m) {
-        d(o.getClass().getSimpleName(), m.toString());
+        d(o.getClass().getSimpleName(), "(" + m.getClass().getSimpleName() + ") " + m.toString());
     }
 
     public static void ui(final Object o, final Object m) {
