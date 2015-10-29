@@ -1,6 +1,6 @@
 droidcon-booth
 =============
-[insert fancy picture of booth here]
+<img src="https://pbs.twimg.com/media/CSeP7ybW4AA6S5H.jpg:large" width="150px"/>
 
 What is it?
 ==
@@ -70,3 +70,9 @@ You can record your test running via android studio's screen recording and then 
 [@rock3r](https://github.com/rock3r) uses https://gist.github.com/rock3r/a923a79e8d8a850911aa *;) (default transcoding has horrible color artifacts)*
 
 and there's also a website for it http://ezgif.com/video-to-gif
+***
+While trying your test you might want to run only your own test with something like this
+
+```
+./gradlew cAT --debug -Pandroid.testInstrumentationRunnerArguments.class=com.novoda.canvas.HelloWorldTest
+```
