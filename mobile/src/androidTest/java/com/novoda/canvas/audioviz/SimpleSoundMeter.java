@@ -31,9 +31,9 @@ public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider, 
                     AudioFormat.ENCODING_PCM_16BIT,
                     minBufferSize
             );
-        } else {
-            audioRecord.startRecording();
         }
+
+        audioRecord.startRecording();
     }
 
     @Override
@@ -43,6 +43,7 @@ public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider, 
 
     @Override
     public void read() {
+
         int sum = 0;
         short[] buffer = new short[minBufferSize];
         audioRecord.read(buffer, 0, minBufferSize);
@@ -53,6 +54,8 @@ public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider, 
                 amplitude = Math.abs(sample);
             }
         }
+
+        L.ui(this, "amplitude = " +amplitude);
 
         mean = sum / minBufferSize;
     }
