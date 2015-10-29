@@ -44,6 +44,7 @@ dependencies {
     testCompile 'org.easytesting:fest-assert-core:2.0M10'
 
     androidTestCompile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile 'com.cesarferreira.catkit:catkit:0.3.0'
 
 
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
