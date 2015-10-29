@@ -16,6 +16,7 @@ public class MediaSoundMeter implements SoundDataRetriever, SoundDataProvider, T
 
     @Override
     public int getMean() {
+        // not implemented
         return 0;
     }
 
@@ -42,7 +43,6 @@ public class MediaSoundMeter implements SoundDataRetriever, SoundDataProvider, T
             mediaRecorder.stop();
             mediaRecorder.reset();
             mediaRecorder.release();
-            mediaRecorder = null;
         }
     }
 
