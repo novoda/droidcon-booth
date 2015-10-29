@@ -7,8 +7,13 @@ import java.io.IOException;
 
 public class MediaSoundMeter implements SoundDataRetriever, SoundDataProvider, Tickable {
 
+    public static final String DEV_NULL = "/dev/null";
     private MediaRecorder mediaRecorder = null;
     private int lastSampledAmplitude;
+
+    public MediaSoundMeter() {
+        mediaRecorder = new MediaRecorder();
+    }
 
     @Override
     public int getAmplitude() {
@@ -23,19 +28,18 @@ public class MediaSoundMeter implements SoundDataRetriever, SoundDataProvider, T
 
     @Override
     public void start() {
-        if (mediaRecorder == null) {
-            mediaRecorder = new MediaRecorder();
-            try {
-                mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-                mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
-                mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
-                mediaRecorder.setOutputFile("/dev/null");
-                mediaRecorder.prepare();
-                mediaRecorder.start();
-            } catch (IllegalStateException | IOException e) {
-                Log.e(MediaSoundMeter.class.getSimpleName(), "start() failed: " + e.getMessage());
-            }
+
+        try {
+            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
+            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
+            mediaRecorder.setOutputFile(DEV_NULL);
+            mediaRecorder.prepare();
+            mediaRecorder.start();
+        } catch (IllegalStateException | IOException e) {
+            Log.e(MediaSoundMeter.class.getSimpleName(), "start() failed: " + e.getMessage());
         }
+
     }
 
     @Override
