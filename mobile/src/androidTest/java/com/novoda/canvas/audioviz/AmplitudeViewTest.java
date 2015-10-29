@@ -6,22 +6,31 @@ import android.view.ViewGroup;
 
 import com.novoda.canvas.base.NovodaActivityTest;
 
-import org.junit.After;
-import org.junit.Before;
-
 public class AmplitudeViewTest extends NovodaActivityTest {
 
     private SimpleSoundMeter simpleSoundMeter;
-    private SoundDataRetriever soundDataRetriever = simpleSoundMeter;
-    private SoundDataProvider soundDataProvider = simpleSoundMeter;
+    private SoundDataRetriever soundDataRetriever;
+    private SoundDataProvider soundDataProvider;
 
-    @Before
-    public void setUp() {
+    private Ticker ticker;
+
+    //@Before
+    public void mySetUp() {
         simpleSoundMeter = new SimpleSoundMeter();
+        soundDataRetriever = simpleSoundMeter;
+        soundDataProvider = simpleSoundMeter;
+        ticker = new Ticker.TickerImpl();
     }
+
+    /*@Test
+    public void theTest() {
+        this.startTestFor(activity);
+    }*/
 
     @Override
     public void startTestFor(Activity activity) {
+
+        mySetUp();
 
         final ViewGroup parent = getParent();
         final Context context = parent.getContext();
@@ -30,11 +39,17 @@ public class AmplitudeViewTest extends NovodaActivityTest {
 
         AmplitudeView amplitudeView = new AmplitudeView(context, soundDataProvider);
         parent.addView(amplitudeView);
+
+        ticker.addTickable(simpleSoundMeter);
+        ticker.addTickable(amplitudeView);
+
+        L.ui(this, "finished");
     }
 
-    @After
-    public void tearDown() throws Exception {
-        soundDataRetriever.stop();
-    }
+//    @After
+//    public void tearDown() throws Exception {
+//        ticker.stop();
+//        soundDataRetriever.stop();
+//    }
 
 }
