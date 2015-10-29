@@ -9,8 +9,6 @@ import com.novoda.canvas.base.NovodaActivityTest;
 import com.novoda.divided.FlippableCard;
 import com.novoda.divided.Question;
 
-import java.util.Random;
-
 public class DividedTest extends NovodaActivityTest {
 
     private FlippableCard flippableCardCenter;
@@ -33,7 +31,7 @@ public class DividedTest extends NovodaActivityTest {
     }
 
     private int randomPick() {
-        return new Random().nextInt(Question.values().length);
+        return NovodaActivity.RANDOM.nextInt(Question.values().length);
     }
 
 }
