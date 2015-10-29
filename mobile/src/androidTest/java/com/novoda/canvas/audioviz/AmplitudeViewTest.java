@@ -36,14 +36,13 @@ public class AmplitudeViewTest extends NovodaActivityTest {
         final Context context = parent.getContext();
 
         soundDataRetriever.start();
+        ticker.start();
 
         AmplitudeView amplitudeView = new AmplitudeView(context, soundDataProvider);
         parent.addView(amplitudeView);
 
         ticker.addTickable(simpleSoundMeter);
         ticker.addTickable(amplitudeView);
-
-        L.ui(this, "finished");
     }
 
 //    @After
