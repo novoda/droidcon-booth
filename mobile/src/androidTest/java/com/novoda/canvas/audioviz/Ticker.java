@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface Ticker {
 
-    void tick(); // TODO FIXME maybe remove this as the ticker should tick on its own
+    void tick(); // TODO no need to have this exposed
 
     void start();
 
@@ -25,7 +25,7 @@ public interface Ticker {
 
         int interval;
         Handler handler;
-        Runnable runnable; // TODO maybe implement StoppableRunnable?
+        Runnable runnable; // TODO StoppableRunnable?
         List<Tickable> tickables;
 
         public TickerImpl() {

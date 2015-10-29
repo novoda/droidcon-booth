@@ -14,8 +14,7 @@ public class SoundViewTest extends NovodaActivityTest {
 
     private Ticker ticker;
 
-    //@Before
-    public void mySetUp() {
+    public void setupDependencies() {
         simpleSoundMeter = new SimpleSoundMeter();
         soundDataRetriever = simpleSoundMeter;
         soundDataProvider = simpleSoundMeter;
@@ -25,15 +24,10 @@ public class SoundViewTest extends NovodaActivityTest {
         ticker.start();
     }
 
-    /*@Test
-    public void theTest() {
-        this.startTestFor(activity);
-    }*/
-
     @Override
     public void startTestFor(Activity activity) {
 
-        mySetUp();
+        setupDependencies();
 
         final ViewGroup parent = getParent();
         final Context context = parent.getContext();
@@ -44,11 +38,5 @@ public class SoundViewTest extends NovodaActivityTest {
         ticker.addTickable(simpleSoundMeter);
         ticker.addTickable(soundView);
     }
-
-//    @After
-//    public void tearDown() throws Exception {
-//        ticker.stop();
-//        soundDataRetriever.stop();
-//    }
 
 }
