@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="white_listed_apps">
+    <item>tv.arte.plus7</item>
+    <item>com.novoda.dch</item>
+    <item>com.mubi</item>
+    <item>novoda.weeworld</item>
+    <item>uk.co.thesun.mobile</item>
+    <item>com.songkick</item>
+    <item>com.tesco.tablet</item>
+    <item>com.google.zxing.client.android</item>
+    <item>com.google.android.calculator</item>
+    <item>com.google.android.GoogleCamera</item>
+    <item>com.android.chrome</item>
+    <item>com.google.android.deskclock</item>
+    <item>com.android.providers.downloads</item>
+    <item>org.gdg.frisbee.android</item>
+    <item>com.google.android.videos</item>
+    <item>com.google.android.apps.plus</item>
+    <item>com.google.android.apps.genie.geniewidget</item>
+    <item>com.google.android.apps.photos</item>
+    <item>com.google.android.youtube</item>
+  </string-array>
+</resources>
