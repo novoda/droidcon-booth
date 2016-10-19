@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+  android:drawable="@drawable/vector_novoda_white_logo">
+
+  <target
+    android:animation="@animator/vector_novoda_animator"
+    android:name="letters1" />
+
+  <target
+    android:animation="@animator/vector_novoda_animator"
+    android:name="letters2" />
+
+  <target
+    android:animation="@animator/vector_dot_animator"
+    android:name="dot1" />
+
+  <target
+    android:animation="@animator/vector_dot_animator"
+    android:name="dot2" />
+
+  <target
+    android:animation="@animator/vector_dot_animator"
+    android:name="dot3" />
+
+</animated-vector>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="small_square_bg">#6633AA</color>
+  <color name="big_square_bg">#550099</color>
+  <color name="matrix_background" >#000000</color>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="logo_width">300dip</dimen>
+  <dimen name="logo_height">80dip</dimen>
+  <dimen name="image_padding">10dip</dimen>
+</resources>

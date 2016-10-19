@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.novoda.canvas.mines.BoardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/board"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <com.novoda.canvas.mines.BoardPanel
+        android:id="@+id/board_panel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <requestFocus />
+
+</com.novoda.canvas.mines.BoardView>

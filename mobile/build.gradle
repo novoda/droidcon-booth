@@ -12,12 +12,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
 }
 
 configurations.all {
     resolutionStrategy {
-        force 'com.android.support:support-annotations:24.2.1'
+        force 'com.android.support:support-annotations:24.2.1', 'com.android.support:support-v4:24.2.1', 'com.android.support:appcompat-v7:24.2.1'
     }
 }
 
@@ -30,4 +31,10 @@ dependencies {
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile 'com.android.support.test:rules:0.5'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+
+    androidTestCompile 'com.cesarferreira.catkit:catkit:0.3.0'
+    androidTestCompile 'com.twitter:hbc-twitter4j:2.2.0'
+    androidTestCompile 'tyrantgit:explosionfield:1.0.1'
+    androidTestCompile 'com.google.zxing:core:3.2.1'
+    androidTestCompile fileTree(dir: 'libs', include: ['*.jar'])
 }

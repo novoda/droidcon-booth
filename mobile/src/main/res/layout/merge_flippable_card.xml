@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <FrameLayout
+    android:id="@+id/back_of_card"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/card_back"
+    android:layout_margin="35dp" />
+
+  <FrameLayout
+    android:id="@+id/front_of_card"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/card_front"
+    android:orientation="vertical"
+    android:rotationY="-90"
+    android:layout_margin="35dp">
+
+    <TextView
+      android:id="@+id/question"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:textSize="25sp"
+      tools:text="Question"
+      android:layout_marginBottom="10dp" />
+
+  </FrameLayout>
+
+</merge>

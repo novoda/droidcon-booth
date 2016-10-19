@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical">
+
+  <ImageView
+    android:id="@+id/tumble_activity_ground_image"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@color/dark_gray"
+    android:layout_alignParentBottom="true"
+    android:contentDescription="@null" />
+
+  <ImageView
+    android:id="@+id/tumble_activity_android_image"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_above="@id/tumble_activity_ground_image"
+    android:background="@drawable/tumble_android"
+    android:contentDescription="@null" />
+
+  <ImageView
+    android:id="@+id/tumble_activity_cloud_image"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@drawable/tumble_activity_cloud"
+    android:layout_alignParentTop="true"
+    android:contentDescription="@null" />
+
+</RelativeLayout>

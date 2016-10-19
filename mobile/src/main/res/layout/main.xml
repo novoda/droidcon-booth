@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MineSweeper"
+                tools:ignore="HardcodedText">
+
+    <com.novoda.canvas.mines.CounterView
+            android:id="@+id/count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="5dip"
+            android:textSize="24dp"/>
+
+    <com.novoda.canvas.mines.CounterView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:gravity="right"
+            android:paddingLeft="5dip"
+            android:textSize="24dp"/>
+
+    <com.novoda.canvas.mines.GameInfoView
+            android:id="@+id/level"
+            android:gravity="center"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/count"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@id/time"
+            android:layout_toRightOf="@id/count"
+            android:text="MineSweeper"/>
+
+    <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/count"
+            layout="@layout/board"/>
+
+</RelativeLayout>

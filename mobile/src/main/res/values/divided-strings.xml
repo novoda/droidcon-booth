@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="linear_layout_weights">How do you write LinearLayout weights?</string>
+
+  <string name="extract_resources">How much do you extract resources?</string>
+
+  <string name="when_to_use_final">Where do you use final?</string>
+
+</resources>

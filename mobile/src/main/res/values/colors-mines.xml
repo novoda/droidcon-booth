@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="NO_1_COLOR">#ff0000ff</color>
+  <color name="NO_2_COLOR">#ff008000</color>
+  <color name="NO_3_COLOR">#ffff0000</color>
+  <color name="NO_4_COLOR">#ff000080</color>
+  <color name="NO_5_COLOR">#ff000000</color>
+  <color name="NO_6_COLOR">#ff000000</color>
+  <color name="NO_7_COLOR">#ff000000</color>
+  <color name="NO_8_COLOR">#ff000000</color>
+  <color name="ERROR_COLOR">#ffff0000</color>
+  <color name="FLAG_COLOR">#ffff0000</color>
+  <color name="BOMB_COLOR_BODY">#ff000000</color>
+  <color name="BOMB_COLOR_SPIKES">#ff000000</color>
+  <color name="FLAGPOLE_COLOR">#ff000000</color>
+  <color name="BUTTON_COLOR_UP_LEFT">#ffa0a0a0</color>
+  <color name="BUTTON_COLOR_LOW_RIGHT">#ff606060</color>
+  <color name="FOCUS_COLOR">#aaf88800</color>
+  <color name="TOUCH_COLOR">#aaf88800</color>
+  <color name="grey_semitransparent">#dda0a0a0</color>
+  <color name="white_semitransparent">#ccffffff</color>
+  <color name="red">#f00</color>
+  <color name="blue">#00f</color>
+  <color name="dark_red">#a00</color>
+  <color name="dark_green">#0a0</color>
+  <color name="darker_green">#080</color>
+  <color name="dark_blue">#00a</color>
+  <color name="transparent_orange">#66f88800</color>
+  <color name="transparent_grey">#66ffffff</color>
+  <color name="transparent_light_grey">#66888888</color>
+</resources>
