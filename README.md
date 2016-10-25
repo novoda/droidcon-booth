@@ -38,7 +38,7 @@ if you're not sure, do it anyways!
 
 You can always have a look at the [merged pull requests](https://github.com/novoda/droidcon-booth/pulls?q=is%3Apr+is%3Aclosed).
 
-How to take part :
+How to Contribute :
 ==
 
 Fork this repo https://github.com/novoda/droidcon-booth
@@ -47,19 +47,7 @@ Extend https://github.com/novoda/droidcon-booth/blob/master/mobile/src/androidTe
 
 Implement `startTestFor`
 
-?????
-
-PROFIT
-
-
 After you've made your *super legit test*, record a gif and raise a PR against this repo. 
-Finally, we need a way to get in touch if you win!
-
-Make sure you've done at least one of these  
-- your github profile is up to date
-- you've put some form of contact in the PR description
-- you've put some form of contact as a comment in your test class
-
 
 **EZ.**
 
