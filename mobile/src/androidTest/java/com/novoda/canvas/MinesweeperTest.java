@@ -13,7 +13,6 @@ import com.novoda.canvas.mines.BombsController;
 import com.novoda.canvas.mines.CounterView;
 import com.novoda.canvas.mines.GameTimer;
 import com.novoda.canvas.mines.TimerController;
-import com.novoda.canvas.R;
 
 import de.devisnik.mine.GameFactory;
 import de.devisnik.mine.IGame;

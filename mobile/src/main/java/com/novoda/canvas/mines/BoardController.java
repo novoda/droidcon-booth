@@ -1,14 +1,14 @@
 package com.novoda.canvas.mines;
 
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
+
 import de.devisnik.mine.IBoard;
 import de.devisnik.mine.IField;
 import de.devisnik.mine.IGame;
 import de.devisnik.mine.Point;
 import de.devisnik.mine.SimpleFieldListener;
-
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 
 public class BoardController {
 

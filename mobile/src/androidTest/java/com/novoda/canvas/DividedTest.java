@@ -1,4 +1,4 @@
-package com.novoda.canvas.divided;
+package com.novoda.canvas;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import com.novoda.canvas.NovodaActivity;
 import com.novoda.canvas.R;
 import com.novoda.canvas.base.NovodaActivityTest;
+import com.novoda.canvas.divided.FlippableCard;
+import com.novoda.canvas.divided.Question;
 
 public class DividedTest extends NovodaActivityTest {
 

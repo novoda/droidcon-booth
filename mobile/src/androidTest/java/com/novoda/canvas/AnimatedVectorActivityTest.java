@@ -42,17 +42,17 @@ public class AnimatedVectorActivityTest extends NovodaActivityTest {
 
     @Override
     public void startTestFor(Activity activity) {
-        Theme theme = NovodaActivity.RANDOM.nextBoolean() ? Theme.BLUE : Theme.WHITE;
-
-        setBackground(activity, theme);
-
-        imageView = createImageView(activity, theme);
-        getParent().addView(imageView);
-
-        explosionField = ExplosionField.attach2Window(activity);
-
-        delayInitialAnimation();
-        delayExplosion();
+//        Theme theme = NovodaActivity.RANDOM.nextBoolean() ? Theme.BLUE : Theme.WHITE;
+//
+//        setBackground(activity, theme);
+//
+//        imageView = createImageView(activity, theme);
+//        getParent().addView(imageView);
+//
+//        explosionField = ExplosionField.attach2Window(activity);
+//
+//        delayInitialAnimation();
+//        delayExplosion();
     }
 
     private void setBackground(Activity activity, Theme theme) {
