@@ -9,7 +9,6 @@ import android.support.annotation.Px;
 import android.support.v4.content.res.ResourcesCompat;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
 import com.novoda.canvas.base.NovodaActivityTest;
@@ -23,9 +22,9 @@ import static com.novoda.canvas.NovodaActivity.RANDOM;
 public class SuperStarActivityTest extends NovodaActivityTest {
 
     private static final int[] STARS_RESOURCES = {
-            android.R.drawable.star_big_on,
-            android.R.drawable.star_on,
-            android.R.drawable.btn_star_big_on
+            R.drawable.ic_star_border_white,
+            R.drawable.ic_star_blue_full,
+            R.drawable.ic_star_orange_full
 
     };
     private static final int BATCH_SIZE = 20;
@@ -151,7 +150,7 @@ public class SuperStarActivityTest extends NovodaActivityTest {
         ValueAnimator animator = new ValueAnimator();
         animator.setFloatValues(-starSize, screenHeight + starSize);
         animator.setDuration(getFallDuration());
-        animator.setInterpolator(new AccelerateInterpolator());
+        animator.setInterpolator(new LinearInterpolator());
         animator.start();
         return animator;
     }
