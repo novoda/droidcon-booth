@@ -12,7 +12,6 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Px;
-import android.util.Log;
 import android.util.Size;
 import android.view.Display;
 import android.view.View;
@@ -259,11 +258,9 @@ public class BounceTest extends NovodaActivityTest {
         protected void onDraw(Canvas canvas) {
             for (Circle circle : circles) {
                 if (!circle.readyToDraw()) {
-                    Log.i("cirkles", "Skipping circle " + circle.toString());
                     continue;
                 }
 
-                Log.v("cirkles", "Drawing circle " + circle.toString());
                 float x = (float) circle.xAnimator().getAnimatedValue();
                 float y = (float) circle.yAnimator().getAnimatedValue();
 
