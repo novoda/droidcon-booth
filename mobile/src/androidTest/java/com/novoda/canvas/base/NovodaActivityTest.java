@@ -8,6 +8,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.content.res.ResourcesCompat;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.novoda.canvas.NovodaActivity;
 
@@ -16,6 +17,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 @RunWith(AndroidJUnit4.class)
@@ -53,6 +55,21 @@ public abstract class NovodaActivityTest {
     @ColorInt
     protected int getColor(@ColorRes int color) {
         return ResourcesCompat.getColor(activity.getResources(), color, activity.getTheme());
+    }
+
+    protected final void ensurePermissions(String[] permissions, String rationale) {
+        activity.ensurePermissions(
+                permissions,
+                rationale,
+                new NovodaActivity.Callback() {
+
+                    @Override
+                    public void onPermissionsNotGranted(String[] permissions) {
+                        Toast.makeText(activity, "Needing permissions: " + Arrays.toString(permissions) +
+                                ", please approve for next run to work", Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
     }
 
 }
