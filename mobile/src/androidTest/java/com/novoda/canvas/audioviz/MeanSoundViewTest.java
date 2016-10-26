@@ -14,6 +14,20 @@ public class MeanSoundViewTest extends NovodaActivityTest {
 
     private Ticker ticker;
 
+    @Override
+    public void startTestFor(Activity activity) {
+        setupDependencies();
+
+        ViewGroup parent = getParent();
+        Context context = parent.getContext();
+
+        MeanSoundView meanSoundView = new MeanSoundView(context, soundDataProvider);
+        parent.addView(meanSoundView);
+
+        ticker.addTickable(simpleSoundMeter);
+        ticker.addTickable(meanSoundView);
+    }
+
     public void setupDependencies() {
         simpleSoundMeter = new SimpleSoundMeter();
         soundDataRetriever = simpleSoundMeter;
@@ -22,21 +36,6 @@ public class MeanSoundViewTest extends NovodaActivityTest {
 
         soundDataRetriever.start();
         ticker.start();
-    }
-
-    @Override
-    public void startTestFor(Activity activity) {
-
-        setupDependencies();
-
-        final ViewGroup parent = getParent();
-        final Context context = parent.getContext();
-
-        MeanSoundView meanSoundView = new MeanSoundView(context, soundDataProvider);
-        parent.addView(meanSoundView);
-
-        ticker.addTickable(simpleSoundMeter);
-        ticker.addTickable(meanSoundView);
     }
 
 }
