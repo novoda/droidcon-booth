@@ -1,13 +1,17 @@
 package com.novoda.canvas.base;
 
 import android.app.Activity;
+import android.graphics.Point;
 import android.os.SystemClock;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
+import android.support.annotation.Px;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.content.res.ResourcesCompat;
+import android.view.Display;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.novoda.canvas.NovodaActivity;
@@ -70,6 +74,32 @@ public abstract class NovodaActivityTest {
                     }
                 }
         );
+    }
+
+    protected final Size getScreenSize(WindowManager windowManager) {
+        Display display = windowManager.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        return new Size(size.x, size.y);
+    }
+
+    protected static class Size {
+
+        private final int width;
+        private final int height;
+
+        Size(@Px int width, @Px int height) {
+            this.width = width;
+            this.height = height;
+        }
+
+        public int width() {
+            return width;
+        }
+
+        public int height() {
+            return height;
+        }
     }
 
 }

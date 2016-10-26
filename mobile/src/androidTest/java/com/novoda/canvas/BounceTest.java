@@ -6,17 +6,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Px;
-import android.util.Size;
-import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.LinearInterpolator;
 
@@ -63,8 +59,8 @@ public class BounceTest extends NovodaActivityTest {
         parent.addView(circlesView);
 
         Size screenSize = getScreenSize(activity.getWindowManager());
-        final int screenWidth = screenSize.getWidth();
-        final int screenHeight = screenSize.getHeight();
+        final int screenWidth = screenSize.width();
+        final int screenHeight = screenSize.height();
 
         for (int batchIndex = 0; batchIndex < BATCHES_COUNT; batchIndex++) {
             final int batchSize = batchIndex * 2;
@@ -102,13 +98,6 @@ public class BounceTest extends NovodaActivityTest {
 
     private int delayFor(int batchIndex) {
         return batchIndex * 500;
-    }
-
-    private Size getScreenSize(WindowManager windowManager) {
-        Display display = windowManager.getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        return new Size(size.x, size.y);
     }
 
     private List<Circle> createCircles(int count) {
@@ -229,19 +218,8 @@ public class BounceTest extends NovodaActivityTest {
         }
 
         boolean readyToDraw() {
-            return xAnimator != null/* && xAnimator.isStarted()*/ &&
-                    yAnimator != null/* && yAnimator.isStarted()*/;
-        }
-
-        @Override
-        public String toString() {
-            String x = String.valueOf(xAnimator != null ? xAnimator.getAnimatedValue() : "N/A");
-            String y = String.valueOf(yAnimator != null ? yAnimator.getAnimatedValue() : "N/A");
-            return "Circle{" +
-                    "size=" + size() +
-                    ", x=" + x +
-                    ", y=" + y +
-                    '}';
+            return xAnimator != null && xAnimator.isStarted() &&
+                    yAnimator != null && yAnimator.isStarted();
         }
     }
 
