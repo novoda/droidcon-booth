@@ -63,12 +63,12 @@ public abstract class NovodaActivityTest {
                 rationale,
                 new NovodaActivity.Callback() {
 
-            @Override
-            public void onPermissionsNotGranted(String[] permissions) {
-                Toast.makeText(activity, "Needing permissions: " + Arrays.toString(permissions) +
-                        ", please approve for next run to work", Toast.LENGTH_LONG).show();
-            }
-        }
+                    @Override
+                    public void onPermissionsNotGranted(String[] permissions) {
+                        Toast.makeText(activity, "Needing permissions: " + Arrays.toString(permissions) +
+                                ", please approve for next run to work", Toast.LENGTH_LONG).show();
+                    }
+                }
         );
     }
 

@@ -68,7 +68,9 @@ public class SimpleSoundMeter implements SoundDataRetriever, SoundDataProvider, 
 
     @Override
     public void stop() {
-        audioRecord.stop();
+        if (audioRecord.getState() == AudioRecord.STATE_INITIALIZED) {
+            audioRecord.stop();
+        }
     }
 
     @Override
