@@ -1,3 +1,5 @@
+# 🛑 THIS REPOSITORY IS OFFICIALLY NO LONGER UNDER MAINTENANCE since 10/02/2022 🛑
+
 droidcon-booth
 =============
 <img src="https://pbs.twimg.com/media/CSeP7ybW4AA6S5H.jpg:large" width="150px"/>
